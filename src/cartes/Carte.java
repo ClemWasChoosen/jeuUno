@@ -58,6 +58,73 @@ public abstract class Carte {
     }
 
     /**
+     * Vérifie la carte possède une couleur
+     * @return true si la couleur == null sinon retourne vrai
+     */
+    public boolean estSansCouleur(){
+        return this.couleur == null;
+    }
+
+    /**
+     * Vérifie si la carte a la même couleur que celle en paramètre
+     * @param c Carte vérifiant la compatibilité
+     * @return Vrai si la couleur est la même que celle en paramètre
+     */
+    public boolean estDeCouleurCompatibleAvec(Carte c){
+        return this.couleur == c.couleur;
+    }
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(Carte c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(Chiffre c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(Plus2 c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(Plus4 c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(Joker c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(PasseTonTour c);
+
+    /**
+     * Vérifie si la carte peut être posée sur la Carte c
+     * @param c Carte accueillant la carte du jeu
+     * @return Vrai si la carte peut être posée sur la carte en paramètre
+     */
+    public abstract boolean peutEtrePoseeSur(ChangementDeSens c);
+
+
+    /**
      * Retourne un String pour afficher les attributs de la carte
      * @return String du contenu 
      */
