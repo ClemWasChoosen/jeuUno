@@ -1,48 +1,44 @@
 package cartes;
+import cartes.Uno;
 
-public class Carte {
+public abstract class Carte {
 
-    private Integer valeur ;
+    private Uno uno;
     private Couleur couleur ;
 
     /**
      * Contructeur de carte
-     * @param valeur   numéro de la cartes
+     * @param uno Jeu uno
      * @param couleur  Couleur de la carte
      */
-    public Carte(Integer valeur, Couleur couleur) {
-      assert(valeur != null): "Valeur dans le constructeur cartes est à null: Erreur!";
-      assert(valeur != null): "Valeur dans le constructeur cartes est à null: Erreur!";
-      this.valeur = valeur;
+    public Carte(Uno uno, Couleur couleur) {
+      assert(uno != null):"Uno dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
+      assert(couleur != null):"Couleur dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
+      this.uno = uno;
       this.couleur = couleur;
     }
 
     /**
      * Constructeur par recopie de Carte
-     * @param c  Carte déjà existante
+     * @param u Jeu à copier
      */
-    public Carte(Carte c) {
-      assert(c != null): "Carte dans le constructeur de recopie cartes est à null: Erreur!";
-      this.valeur = c.valeur;
-      this.couleur = c.couleur;
+    public Carte(Uno u) {
+      assert(u != null):"Uno dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
+      this.uno = u;
+      this.couleur = null;
     }
 
     /**
      * Retourne le numéro de la carte
      * @return valeur de la carte
      */
-    public Integer getValeur() {
-        return valeur;
-    }
+    public abstract Integer getValeur();
 
     /**
-     * Définie la valeur de la carte
-     * @param valeur  Integer à ajouter à la carte
+     * Vrai si la couleur peut etre rcouverte
+     * @param c Carte recouvrant celle sur le paquet
      */
-    public void setValeur(Integer valeur) {
-      assert(valeur != null): "Parametre Valeur dans setValeur est à null: Erreur!";
-      this.valeur = valeur;
-    }
+    public abstract boolean peutEtreRecouvertePar(Carte c);
 
     /**
      * Retourne la couleur de la Carte
@@ -65,11 +61,11 @@ public class Carte {
      * Retourne un String pour afficher les attributs de la carte
      * @return String du contenu 
      */
-    public String toString() {
+/*    public String toString() {
         return "Carte{" +
                 "valeur=" + valeur +
                 ", couleur=" + couleur +
                 '}';
     }
-
+*/
 }

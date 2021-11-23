@@ -21,12 +21,12 @@ public class FabriqueCartes {
   }
 
   public PaquetDeCartes getPaquet1Vert(){
-    this.paquet.ajouter(new Carte(6, Couleur.VERT));
+    //this.paquet.ajouter(new Carte(6, Couleur.VERT));
     return this.paquet;
   }
 
   public PaquetDeCartes getPaquet5Vert(){
-    this.paquet.ajouter(new Carte(9, Couleur.VERT), new Carte(6, Couleur.VERT), new Carte(3, Couleur.VERT), new Carte(12, Couleur.VERT), new Carte(15, Couleur.VERT));
+    //this.paquet.ajouter(new Carte(9, Couleur.VERT), new Carte(6, Couleur.VERT), new Carte(3, Couleur.VERT), new Carte(12, Couleur.VERT), new Carte(15, Couleur.VERT));
     return this.paquet;
   }
 }
