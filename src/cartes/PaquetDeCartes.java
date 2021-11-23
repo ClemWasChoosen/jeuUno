@@ -1,10 +1,16 @@
 package cartes;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.lang.Math;
 import java.util.Collections;
+import java.util.Random;
 
 import cartes.Couleur;
 import cartes.Carte;
+import errorHandler.ErreurFichier;
 
 /**
  * @author Clément Oberhauser
@@ -123,6 +129,26 @@ public class PaquetDeCartes {
     Carte paretourner = new Carte(this.cartePaquet.get(rand));
     enlever(this.cartePaquet.get(rand));
     return paretourner;
+  }
+
+  void ecrire(String nomDeFichier) throws ErreurFichier{
+    File fichier = new File(nomDeFichier);
+  //  int resnbLine = nbLine.nextInt((30 - 10) + 1) + 10;
+
+    if (!fichier.exists()){
+      throw new ErreurFichier("Le fichier n'existe pas impossible d'écrire dessus");
+    }
+
+    try{
+      BufferedWriter writer = new BufferedWriter(new FileWriter(nomDeFichier));
+      for (int i = 0; i <= this.cartePaquet.size(); i++){
+        writer.write(this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
+      }
+      writer.close();
+    }catch (IOException e){
+      System.out.println("Impossible de créer le FileWriter et d'écrire dans le fichier");
+      e.printStackTrace();
+    }
   }
 
   /**
