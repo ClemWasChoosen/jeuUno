@@ -1,10 +1,11 @@
 package cartes;
 import cartes.Uno;
+import cartes.Chiffre;
 
 public abstract class Carte {
 
     private Uno uno;
-    private Couleur couleur ;
+    private Couleur couleur;
 
     /**
      * Contructeur de carte
@@ -32,10 +33,10 @@ public abstract class Carte {
      * Retourne le numéro de la carte
      * @return valeur de la carte
      */
-    public abstract Integer getValeur();
+    public abstract int getValeur();
 
     /**
-     * Vrai si la couleur peut etre rcouverte
+     * Vrai si la couleur peut etre recouverte
      * @param c Carte recouvrant celle sur le paquet
      */
     public abstract boolean peutEtreRecouvertePar(Carte c);

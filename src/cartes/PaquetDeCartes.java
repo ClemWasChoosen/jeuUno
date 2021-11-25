@@ -142,7 +142,7 @@ public class PaquetDeCartes {
     try{
       BufferedWriter writer = new BufferedWriter(new FileWriter(nomDeFichier));
       for (int i = 0; i <= this.cartePaquet.size(); i++){
-        writer.write(this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
+        writer.write(this.cartePaquet.get(i).toString() + this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
       }
       writer.close();
     }catch (IOException e){
