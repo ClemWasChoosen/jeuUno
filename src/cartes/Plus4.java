@@ -6,7 +6,7 @@ public class Plus4 extends Carte{
     }
     @Override
     public int getValeur() {
-        return 0;
+        return 50;
     }
 
     @Override
