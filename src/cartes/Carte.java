@@ -75,12 +75,6 @@ public abstract class Carte {
         return this.couleur == c.couleur;
     }
 
-    /**
-     * Vérifie si la carte peut être posée sur la Carte c
-     * @param c Carte accueillant la carte du jeu
-     * @return Vrai si la carte peut être posée sur la carte en paramètre
-     */
-    public abstract boolean peutEtrePoseeSur(Carte c);
 
     /**
      * Vérifie si la carte peut être posée sur la Carte c

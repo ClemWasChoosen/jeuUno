@@ -13,37 +13,32 @@ public class Plus2 extends Carte{
 
     @Override
     public boolean peutEtreRecouvertePar(Carte c) {
-        return false;
-    }
-
-    @Override
-    public boolean peutEtrePoseeSur(Carte c) {
-        return false;
+        return c.peutEtrePoseeSur(this);
     }
 
     @Override
     public boolean peutEtrePoseeSur(Chiffre c) {
-        return false;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public boolean peutEtrePoseeSur(Plus2 c) {
-        return false;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public boolean peutEtrePoseeSur(Plus4 c) {
-        return false;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public boolean peutEtrePoseeSur(Joker c) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean peutEtrePoseeSur(PasseTonTour c) {
-        return false;
+        return this.getCouleur() == this.getCouleur();
     }
 
     @Override

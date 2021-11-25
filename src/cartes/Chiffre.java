@@ -18,11 +18,6 @@ public class Chiffre extends Carte {
 
     @Override
     public boolean peutEtreRecouvertePar(Carte c) {
-        return c.peutEtreRecouvertePar(this);
-    }
-
-    @Override
-    public boolean peutEtrePoseeSur(Carte c) {
         return c.peutEtrePoseeSur(this);
     }
 

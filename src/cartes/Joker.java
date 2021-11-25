@@ -15,11 +15,6 @@ public class Joker extends Carte {
     }
 
     @Override
-    public boolean peutEtrePoseeSur(Carte c) {
-        return false;
-    }
-
-    @Override
     public boolean peutEtrePoseeSur(Chiffre c) {
         return false;
     }
