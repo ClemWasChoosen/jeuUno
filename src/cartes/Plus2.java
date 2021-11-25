@@ -45,4 +45,9 @@ public class Plus2 extends Carte{
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
         return false;
     }
+
+    @Override
+    public String getName(){
+        return "Plus2";
+    }
 }

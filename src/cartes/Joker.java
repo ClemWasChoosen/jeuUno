@@ -43,4 +43,9 @@ public class Joker extends Carte {
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
         return true;
     }
+
+    @Override
+    public String getName(){
+        return "Joker";
+    }
 }

@@ -44,4 +44,9 @@ public class PasseTonTour extends Carte{
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
         return this.getCouleur() == c.getCouleur();
     }
+
+    @Override
+    public String getName(){
+        return "PasseTonTour";
+    }
 }

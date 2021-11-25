@@ -21,12 +21,21 @@ public class FabriqueCartes {
   }
 
   public PaquetDeCartes getPaquet1Vert(){
-    //this.paquet.ajouter(new Carte(6, Couleur.VERT));
+    Uno u1 = new Uno();
+    this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, 5));
     return this.paquet;
   }
 
   public PaquetDeCartes getPaquet5Vert(){
-    //this.paquet.ajouter(new Carte(9, Couleur.VERT), new Carte(6, Couleur.VERT), new Carte(3, Couleur.VERT), new Carte(12, Couleur.VERT), new Carte(15, Couleur.VERT));
+    Uno u1 = new Uno();
+    this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, 3), new Plus2(u1, Couleur.VERT), new Chiffre(u1, Couleur.VERT, 7), new Chiffre(u1, Couleur.VERT, 9), new Chiffre(u1, Couleur.VERT, 2));
     return this.paquet;
+  }
+
+  @Override
+  public String toString() {
+    return "FabriqueCartes{" +
+            paquet +
+            '}';
   }
 }

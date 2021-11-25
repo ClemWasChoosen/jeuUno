@@ -50,4 +50,16 @@ public class Chiffre extends Carte {
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
         return this.getCouleur() == c.getCouleur();
     }
+
+    @Override
+    public String toString() {
+        return "Chiffre{" +
+                "val=" + val + ", couleur=" + this.getCouleur() +
+                '}';
+    }
+
+    @Override
+    public String getName(){
+        return "Chiffre";
+    }
 }

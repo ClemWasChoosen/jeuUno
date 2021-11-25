@@ -118,16 +118,20 @@ public abstract class Carte {
      */
     public abstract boolean peutEtrePoseeSur(ChangementDeSens c);
 
+    /**
+     * Retourne un String pour afficher les attributs de la carte
+     * @return Nom de la carte
+     */
+    public abstract String getName();
 
     /**
      * Retourne un String pour afficher les attributs de la carte
      * @return String du contenu 
      */
-/*    public String toString() {
-        return "Carte{" +
-                "valeur=" + valeur +
-                ", couleur=" + couleur +
+    public String toString() {
+        return this.getName() + "{" +
+                "couleur=" + couleur +
                 '}';
     }
-*/
+
 }

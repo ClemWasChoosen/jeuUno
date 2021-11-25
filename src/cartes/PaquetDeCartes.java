@@ -119,7 +119,7 @@ public class PaquetDeCartes {
    * Retourne une carte piochée aléatoirement dans le paquet
    * @return [Carte du paquet]
    */
-  public Carte piocher(){
+ /* public Carte piocher(){
     Integer rand = (int)(Math.random() * this.getNombreDeCartes() + 1);
     if (rand == this.getNombreDeCartes()) {
       rand--;
@@ -130,7 +130,7 @@ public class PaquetDeCartes {
     enlever(this.cartePaquet.get(rand));
     return paretourner;
   }
-
+*/
   void ecrire(String nomDeFichier) throws ErreurFichier{
     File fichier = new File(nomDeFichier);
   //  int resnbLine = nbLine.nextInt((30 - 10) + 1) + 10;
