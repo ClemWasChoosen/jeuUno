@@ -32,6 +32,48 @@ public class FabriqueCartes {
     return this.paquet;
   }
 
+  public PaquetDeCartes getPaquetComplet() {
+    Uno u1 = new Uno();
+    for (int j = 0; j < 2; j++)
+        for (int i = 1; i < 10; i++) {
+          this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, i));
+          this.paquet.ajouter(new Chiffre(u1, Couleur.JAUNE, i));
+          this.paquet.ajouter(new Chiffre(u1, Couleur.BLEU, i));
+          this.paquet.ajouter(new Chiffre(u1, Couleur.ROUGE, i));
+      }
+
+    this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, 0));
+    this.paquet.ajouter(new Chiffre(u1, Couleur.JAUNE, 0));
+    this.paquet.ajouter(new Chiffre(u1, Couleur.BLEU, 0));
+    this.paquet.ajouter(new Chiffre(u1, Couleur.ROUGE, 0));
+
+    for (int i = 0; i < 2; i++) {
+      this.paquet.ajouter(new Plus2(u1, Couleur.VERT));
+      this.paquet.ajouter(new Plus2(u1, Couleur.BLEU));
+      this.paquet.ajouter(new Plus2(u1, Couleur.ROUGE));
+      this.paquet.ajouter(new Plus2(u1, Couleur.JAUNE));
+
+      this.paquet.ajouter(new PasseTonTour(u1, Couleur.VERT));
+      this.paquet.ajouter(new PasseTonTour(u1, Couleur.BLEU));
+      this.paquet.ajouter(new PasseTonTour(u1, Couleur.ROUGE));
+      this.paquet.ajouter(new PasseTonTour(u1, Couleur.JAUNE));
+
+      this.paquet.ajouter(new ChangementDeSens(u1, Couleur.VERT));
+      this.paquet.ajouter(new ChangementDeSens(u1, Couleur.BLEU));
+      this.paquet.ajouter(new ChangementDeSens(u1, Couleur.ROUGE));
+      this.paquet.ajouter(new ChangementDeSens(u1, Couleur.JAUNE));
+
+    }
+
+    for (int i = 0; i < 3; i++){
+      this.paquet.ajouter(new Joker(u1, null));
+      this.paquet.ajouter(new Plus4(u1, null));
+    }
+
+    return this.paquet;
+
+  }
+
   @Override
   public String toString() {
     return "FabriqueCartes{" +

@@ -1,7 +1,7 @@
 package cartes;
 
 public class Uno {
-    Uno(){
+    public Uno(){
         
     }
 }

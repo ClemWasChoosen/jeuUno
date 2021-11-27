@@ -14,7 +14,7 @@ public abstract class Carte {
      */
     public Carte(Uno uno, Couleur couleur) {
       assert(uno != null):"Uno dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
-      assert(couleur != null):"Couleur dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
+      //assert(couleur != null):"Couleur dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
       this.uno = uno;
       this.couleur = couleur;
     }
