@@ -31,6 +31,9 @@ public class PasseTonTour extends Carte{
     }
 
     @Override
+    /**TODO
+     * Couleur de Joker peut être à null
+     */
     public boolean peutEtrePoseeSur(Joker c) {
         return this.getCouleur() == c.getCouleur();
     }
