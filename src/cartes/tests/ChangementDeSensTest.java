@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PasseTonTourTest {
-
-    PasseTonTour passeTonTour;
+class ChangementDeSensTest {
+    ChangementDeSens changementdesens;
     Uno u1;
 
     @BeforeEach
     void setUp(){
         u1 = new Uno();
-        passeTonTour = new PasseTonTour(u1, Couleur.BLEU);
+        changementdesens = new ChangementDeSens(u1, Couleur.BLEU);
     }
 
     @Test
     void getValeur() {
-        assertEquals(20, passeTonTour.getValeur(), "La carte PasseTonTour ne vaut pas 20");
+        assertEquals(20, changementdesens.getValeur(), "La carte ChangementDeSens ne vaut pas 20");
     }
+
 
     @Test
     void testPeutEtreRecouvertePar() {
@@ -32,48 +32,48 @@ class PasseTonTourTest {
     @DisplayName("Test avec le Plus2")
     void testPeutEtrePoseeSur() {
         Plus2 carte = new Plus2(u1, Couleur.BLEU);
-        assertTrue(passeTonTour.peutEtrePoseeSur(carte), "Erreur : Le PasseTonTour ne peut pas être posé sur le Plus2");
+        assertTrue(changementdesens.peutEtrePoseeSur(carte), "Erreur : Le ChangementDeSens ne peut pas être posé sur le Plus2");
     }
 
     @Test
     @DisplayName("Test avec le Plus4")
     void testPeutEtrePoseeSur1() {
         Plus4 carte = new Plus4(u1, Couleur.BLEU);
-        assertTrue(passeTonTour.peutEtrePoseeSur(carte), "Erreur : Le PasseTonTour ne peut pas être posé sur le Plus4");
+        assertTrue(changementdesens.peutEtrePoseeSur(carte), "Erreur : Le ChangementDeSens ne peut pas être posé sur le Plus4");
     }
 
     @Test
     @DisplayName("Test avec le Joker")
     void testPeutEtrePoseeSur2() {
         Joker carte = new Joker(u1, Couleur.BLEU);
-        assertTrue(passeTonTour.peutEtrePoseeSur(carte), "Erreur : Le PasseTonTour ne peut pas être posé sur le Joker");
+        assertTrue(changementdesens.peutEtrePoseeSur(carte), "Erreur : Le ChangementDeSens ne peut pas être posé sur le Joker");
     }
 
     @Test
     @DisplayName("Test avec le Chiffre")
     void testPeutEtrePoseeSur3() {
         Chiffre chiffre = new Chiffre(u1, Couleur.BLEU, 9);
-        assertTrue(passeTonTour.peutEtrePoseeSur(chiffre), "Erreur : Le PasseTonTour ne peut pas être posé sur le Chiffre");
+        assertTrue(changementdesens.peutEtrePoseeSur(chiffre), "Erreur : Le ChangementDeSens ne peut pas être posé sur le Chiffre");
     }
 
     @Test
     @DisplayName("Test avec le Passe ton tour")
     void testPeutEtrePoseeSur4() {
         PasseTonTour carte = new PasseTonTour(u1, Couleur.BLEU);
-        assertTrue(passeTonTour.peutEtrePoseeSur(carte), "Erreur : Le PasseTonTour ne peut pas être posé sur le PasseTonTour");
+        assertTrue(changementdesens.peutEtrePoseeSur(carte), "Erreur : Le ChangementDeSens ne peut pas être posé sur le PasseTonTour");
     }
 
     @Test
     @DisplayName("Test avec le Changement de Sens")
     void testPeutEtrePoseeSur5() {
         ChangementDeSens carte = new ChangementDeSens(u1, Couleur.BLEU);
-        assertTrue(passeTonTour.peutEtrePoseeSur(carte), "Erreur : Le PasseTonTour ne peut pas être posé sur le ChangementDeSens");
+        assertTrue(changementdesens.peutEtrePoseeSur(carte), "Erreur : Le ChangementDeSens ne peut pas être posé sur le ChangementDeSens");
     }
 
 
     @Test
     @DisplayName("Test fct GetName")
     void testGetName() {
-        assertEquals(passeTonTour.getName(), "PasseTonTour", "Erreur; getName ne retourne pas le nom de la classe (PasseTonTour)");
+        assertEquals(changementdesens.getName(), "ChangementDeSens", "Erreur; getName ne retourne pas le nom de la classe (ChangementDeSens)");
     }
 }
