@@ -4,6 +4,10 @@ import cartes.Carte;
 import cartes.Couleur;
 import cartes.Uno;
 
+/** TODO
+ * AJouter les tests sur GetValeur !!!!!!
+ */
+
 public class Chiffre extends Carte {
     protected int val;
 
