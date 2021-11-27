@@ -45,41 +45,39 @@ class ChiffreTest {
     @DisplayName("Test avec le Plus4")
     void testPeutEtrePoseeSur1() {
         Plus4 carte = new Plus4(u1, Couleur.BLEU);
-        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus2 (Meme couleur)");
+        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus4 (Meme couleur)");
     }
 
     @Test
     @DisplayName("Test avec le Joker")
     void testPeutEtrePoseeSur2() {
         Joker carte = new Joker(u1, null);
-        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus2 (Meme couleur)");
+        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Joker (??)");
     }
 
     @Test
-    @DisplayName("Test avec le Plus2")
+    @DisplayName("Test avec le Chiffre")
     void testPeutEtrePoseeSur3() {
-        PasseTonTour carte = new PasseTonTour(u1, Couleur.BLEU);
-        assertTrue(carte.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus2 (Meme couleur)");
+        Chiffre carte = new Chiffre(u1, Couleur.ROUGE, 9);
+        assertFalse(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Chiffre (Erreur Couleur)");
+        Chiffre carte2 = new Chiffre(u1, Couleur.BLEU, 3);
+        assertFalse(chiffre.peutEtrePoseeSur(carte2), "Erreur : Le Chiffre ne peut pas être posé sur le Chiffre (Erreur valeur)");
     }
 
     @Test
     @DisplayName("Test avec le Passe ton tour")
     void testPeutEtrePoseeSur4() {
         PasseTonTour carte = new PasseTonTour(u1, Couleur.BLEU);
-        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus2 (Meme couleur)");
+        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le PasseTonTour (Meme couleur)");
     }
 
     @Test
     @DisplayName("Test avec le Changement de Sens")
     void testPeutEtrePoseeSur5() {
         ChangementDeSens carte = new ChangementDeSens(u1, Couleur.BLEU);
-        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Plus2 (Meme couleur)");
+        assertTrue(chiffre.peutEtrePoseeSur(carte), "Erreur : Le Chiffre ne peut pas être posé sur le Changement de Sens (Meme couleur)");
     }
 
-    /*
-    @Test
-    void testToString() {
-    }*/
 
     @Test
     @DisplayName("Test fct GetName")
