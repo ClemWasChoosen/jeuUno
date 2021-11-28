@@ -31,7 +31,19 @@ class ChiffreTest {
 
     @Test
     void testPeutEtreRecouvertePar() {
-       // assertEquals(chiffre.peutEtreRecouvertePar());
+        Plus2 plus2 = new Plus2(u1, Couleur.BLEU);
+        assertTrue(chiffre.peutEtreRecouvertePar(plus2), "Chiffre ne peut être recouverte par Plus2");
+        PasseTonTour passeTonTour = new PasseTonTour(u1, Couleur.BLEU);
+        assertTrue(chiffre.peutEtreRecouvertePar(passeTonTour), "Chiffre ne peut être recouverte par PasseTonTour");
+        Joker joker = new Joker(u1, Couleur.BLEU);
+        assertTrue(chiffre.peutEtreRecouvertePar(joker), "Chiffre ne peut être recouverte par Joker");
+        ChangementDeSens changementDeSens = new ChangementDeSens(u1, Couleur.BLEU);
+        assertTrue(chiffre.peutEtreRecouvertePar(changementDeSens), "Chiffre ne peut être recouverte par ChangementDeSens");
+        Plus4 plus4 = new Plus4(u1, Couleur.BLEU);
+        assertTrue(chiffre.peutEtreRecouvertePar(plus4), "Chiffre ne peut être recouverte par Plus4");
+        Chiffre chiffre2 = new Chiffre(u1, Couleur.BLEU, 9);
+        assertTrue(chiffre.peutEtreRecouvertePar(chiffre2), "Chiffre ne peut être recouverte par Chiffre");
+
     }
 
     @Test

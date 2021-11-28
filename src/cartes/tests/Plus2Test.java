@@ -18,8 +18,24 @@ class Plus2Test {
     }
 
     @Test
+    void getValeur() {
+        assertEquals(20, plus2.getValeur(), "La carte ChangementDeSens ne vaut pas 20");
+    }
+
+    @Test
     void testPeutEtreRecouvertePar() {
-        // assertEquals(chiffre.peutEtreRecouvertePar());
+        Plus4 plus4 = new Plus4(u1, Couleur.BLEU);
+        assertTrue(plus2.peutEtreRecouvertePar(plus4), "Plus2 ne peut être recouverte par Plus4");
+        PasseTonTour passeTonTour = new PasseTonTour(u1, Couleur.BLEU);
+        assertTrue(plus2.peutEtreRecouvertePar(passeTonTour), "Plus2 ne peut être recouverte par PasseTonTour");
+        Joker joker = new Joker(u1, Couleur.BLEU);
+        assertTrue(plus2.peutEtreRecouvertePar(joker), "Plus2 ne peut être recouverte par Joker");
+        ChangementDeSens changementDeSens = new ChangementDeSens(u1, Couleur.BLEU);
+        assertTrue(plus2.peutEtreRecouvertePar(changementDeSens), "Plus2 ne peut être recouverte par ChangementDeSens");
+        Chiffre chiffre = new Chiffre(u1, Couleur.BLEU, 9);
+        assertTrue(plus2.peutEtreRecouvertePar(chiffre), "Plus2 ne peut être recouverte par Chiffre");
+        Plus2 plus2bis = new Plus2(u1, Couleur.BLEU);
+        assertTrue(plus2.peutEtreRecouvertePar(plus2bis), "Plus2 ne peut être recouverte par Plus2");
     }
 
     @Test

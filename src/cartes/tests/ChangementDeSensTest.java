@@ -25,7 +25,18 @@ class ChangementDeSensTest {
 
     @Test
     void testPeutEtreRecouvertePar() {
-        // assertEquals(chiffre.peutEtreRecouvertePar());
+        Plus4 plus4 = new Plus4(u1, Couleur.BLEU);
+        assertTrue(changementdesens.peutEtreRecouvertePar(plus4), "ChangementDeSens ne peut être recouverte par Plus4");
+        Plus2 plus2 = new Plus2(u1, Couleur.BLEU);
+        assertFalse(changementdesens.peutEtreRecouvertePar(plus2), "ChangementDeSens ne peut être recouverte par Plus2");
+        Joker joker = new Joker(u1, Couleur.BLEU);
+        assertTrue(changementdesens.peutEtreRecouvertePar(joker), "ChangementDeSens ne peut être recouverte par Joker");
+        PasseTonTour passeTonTour = new PasseTonTour(u1, Couleur.BLEU);
+        assertTrue(changementdesens.peutEtreRecouvertePar(passeTonTour), "ChangementDeSens ne peut être recouverte par PasseTonTour");
+        Chiffre chiffre = new Chiffre(u1, Couleur.BLEU, 9);
+        assertTrue(changementdesens.peutEtreRecouvertePar(chiffre), "ChangementDeSens ne peut être recouverte par Chiffre");
+        ChangementDeSens changementDeSens2 = new ChangementDeSens(u1, Couleur.BLEU);
+        assertTrue(changementdesens.peutEtreRecouvertePar(changementDeSens2), "ChangementDeSens ne peut être recouverte par ChangementDeSens");
     }
 
     @Test

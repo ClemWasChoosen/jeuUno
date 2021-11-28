@@ -25,7 +25,19 @@ class PasseTonTourTest {
 
     @Test
     void testPeutEtreRecouvertePar() {
-        // assertEquals(chiffre.peutEtreRecouvertePar());
+        Plus4 plus4 = new Plus4(u1, Couleur.BLEU);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(plus4), "PasseTonTour ne peut être recouverte par Plus4");
+        Plus2 plus2 = new Plus2(u1, Couleur.BLEU);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(plus2), "PasseTonTour ne peut être recouverte par Plus2");
+        Joker joker = new Joker(u1, Couleur.BLEU);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(joker), "PasseTonTour ne peut être recouverte par Joker");
+        ChangementDeSens changementDeSens = new ChangementDeSens(u1, Couleur.BLEU);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(changementDeSens), "PasseTonTour ne peut être recouverte par ChangementDeSens");
+        Chiffre chiffre = new Chiffre(u1, Couleur.BLEU, 9);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(chiffre), "PasseTonTour ne peut être recouverte par Chiffre");
+        PasseTonTour passeTonTour2 = new PasseTonTour(u1, Couleur.BLEU);
+        assertTrue(passeTonTour.peutEtreRecouvertePar(passeTonTour2), "PasseTonTour ne peut être recouverte par PasseTonTour");
+
     }
 
     @Test

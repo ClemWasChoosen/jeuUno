@@ -19,8 +19,27 @@ class JokerTest {
     }
 
     @Test
+    void getValeur() {
+        assertEquals(50, joker.getValeur(), "La carte ChangementDeSens ne vaut pas 20");
+    }
+
+    @Test
     void testPeutEtreRecouvertePar() {
-        // assertEquals(chiffre.peutEtreRecouvertePar());
+        Plus2 plus2 = new Plus2(u1, Couleur.BLEU);
+        assertTrue(joker.peutEtreRecouvertePar(plus2), "Joker ne peut être recouverte par Plus4");
+        PasseTonTour passeTonTour = new PasseTonTour(u1, Couleur.BLEU);
+        //La couleur de Joker est fixée à null dans ces tests
+        assertFalse(joker.peutEtreRecouvertePar(passeTonTour), "Joker ne peut être recouverte par Plus2");
+        Plus4 plus4 = new Plus4(u1, Couleur.BLEU);
+        assertTrue(joker.peutEtreRecouvertePar(plus4), "Joker ne peut être recouverte par Plus4");
+        ChangementDeSens changementDeSens = new ChangementDeSens(u1, Couleur.BLEU);
+        //Pareil qu'au dessus
+        assertFalse(joker.peutEtreRecouvertePar(changementDeSens), "Joker ne peut être recouverte par ChangementDeSens");
+        Chiffre chiffre = new Chiffre(u1, Couleur.BLEU, 9);
+        assertTrue(joker.peutEtreRecouvertePar(chiffre), "Joker ne peut être recouverte par Chiffre");
+        Joker joker2 = new Joker(u1, Couleur.BLEU);
+        assertTrue(joker.peutEtreRecouvertePar(joker2), "Joker ne peut être recouverte par Joker");
+
     }
 
     @Test
