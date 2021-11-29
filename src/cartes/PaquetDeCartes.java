@@ -1,10 +1,8 @@
 package cartes;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -17,7 +15,7 @@ import errorHandler.ErreurFichier;
  * @version TP5 - BPO
  */
 
-public class PaquetDeCartes {
+public class PaquetDeCartes{
   private ArrayList<Carte> cartePaquet;
 
   /**
@@ -52,9 +50,7 @@ public class PaquetDeCartes {
   public void ajouter(Carte ... cartesToAdd){
     assert(cartesToAdd != null): "La collection de carte est à null dans la fct ajouter de PaquetDeCartes: Erreur !";
     // assert(cartesToAdd.size() == this.cartePaquet.size()): "La taille de  dans la fct ajouter de PaquetDeCartes: Erreur !";
-    for (Carte c : cartesToAdd) {
-      this.cartePaquet.add(c);
-    }
+    this.cartePaquet.addAll(Arrays.asList(cartesToAdd));
   }
 
   /**
@@ -62,7 +58,7 @@ public class PaquetDeCartes {
    * abcd -> dcba
    */
   public void retourner(){
-    assert(this.estVide() != true): "Impossible d'inverser la liste, la collection est vide, fct retourner PaquetDeCartes";
+    assert(!this.estVide()): "Impossible d'inverser la liste, la collection est vide, fct retourner PaquetDeCartes";
     Collections.reverse(this.cartePaquet);
   }
 
@@ -70,7 +66,7 @@ public class PaquetDeCartes {
    * Mélange le paquet aléatoirement
    */
   public void melanger(){
-    assert(this.estVide() != true): "Impossible de mélanger la liste, la collection est vide, fct mélanger PaquetDeCartes";
+    assert(!this.estVide()): "Impossible de mélanger la liste, la collection est vide, fct mélanger PaquetDeCartes";
     Collections.shuffle(this.cartePaquet);
   }
 
@@ -81,9 +77,7 @@ public class PaquetDeCartes {
   public void ajouter(PaquetDeCartes cartesToAdd){
     assert(cartesToAdd != null): "La collection de carte est à null dans la fct ajouter de PaquetDeCartes: Erreur !";
     // assert(cartesToAdd.size() == this.cartePaquet.size()): "La taille de  dans la fct ajouter de PaquetDeCartes: Erreur !";
-    for (Carte c : cartesToAdd.cartePaquet) {
-      this.cartePaquet.add(c);
-    }
+    this.cartePaquet.addAll(cartesToAdd.cartePaquet);
   }
 
   /**
@@ -131,6 +125,11 @@ public class PaquetDeCartes {
     return paretourner;
   }
 */
+
+  /**
+   * Retourne une carte piochée aléatoirement dans le paquet
+   * @param nomDeFichier Nom courant du fichier sur lequel écrire
+   */
   public void ecrire(String nomDeFichier) throws ErreurFichier{
     File fichier = new File(nomDeFichier);
 
@@ -140,8 +139,8 @@ public class PaquetDeCartes {
 
     try{
       BufferedWriter writer = new BufferedWriter(new FileWriter(nomDeFichier));
-      for (int i = 0; i < this.cartePaquet.size(); i++){
-        writer.write(this.cartePaquet.get(i).getName() + this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
+      for (Carte c : this.cartePaquet) {
+        writer.write(c.getName() + c.getValeur() + " " + c.getCouleur() + "\n");
       }
       writer.close();
     }catch (IOException e){
@@ -150,9 +149,113 @@ public class PaquetDeCartes {
     }
   }
 
+  public PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier{
+    Uno u1 = new Uno();
+    //String path = "testLoop.txt";
+    int nb = 0;
+    //int[] tabOccur = new int[26];
+    //for (int j = 0; j < tabOccur.length; j++)
+    //  tabOccur[j] = 0;
+    try{
+      if (!new File(nomDeFichier).exists()){
+        throw new ErreurFichier("Le fichier n'existe pas impossible de le lire");
+      }
+      BufferedReader filtre = new BufferedReader(new FileReader(nomDeFichier));
+      StreamTokenizer tk = new StreamTokenizer(filtre);
+      tk.eolIsSignificant(true);
+      int ligne = tk.nextToken();
+      this.cartePaquet.clear();
+      while (ligne != StreamTokenizer.TT_EOF){
+        if (ligne == StreamTokenizer.TT_WORD){
+          char c = tk.sval.charAt(tk.sval.length() - 1);
+          if (Character.isDigit(tk.sval.charAt(tk.sval.length() - 1))){
+            String s1;
+            int valeur = 0;
+            Couleur coultoAdd;
+
+            if (tk.sval.charAt(tk.sval.length() - 1) == '0'){
+              if (Character.isDigit(tk.sval.charAt(tk.sval.length() - 2))){
+                s1 = tk.sval.substring(0, tk.sval.length() - 2);
+              }else{
+                s1 = tk.sval.substring(0, tk.sval.length() - 1);
+              }
+            }else{
+              s1 = tk.sval.substring(0, tk.sval.length() - 1);
+            }
+
+            valeur = (int)tk.sval.charAt(tk.sval.length() - 1) - '0';
+
+
+            ligne = tk.nextToken();
+
+            switch (tk.sval){
+              case "VERT":
+                coultoAdd = Couleur.VERT;
+                break;
+              case "ROUGE":
+                coultoAdd = Couleur.ROUGE;
+                break;
+              case "BLEU":
+                coultoAdd = Couleur.BLEU;
+                break;
+              case "JAUNE":
+                coultoAdd = Couleur.JAUNE;
+                break;
+              default:
+                throw new ErreurFichier("Impossible de récupérer la Couleur d'une carte du fichier");
+            }
+
+            //System.out.println(s1);
+
+            switch (s1){
+              case "Chiffre":
+                this.cartePaquet.add(new Chiffre(u1, coultoAdd, valeur));
+                break;
+
+              case "PlusDeux":
+                this.cartePaquet.add(new Plus2(u1, coultoAdd));
+                break;
+
+              case "PlusQuatre":
+                this.cartePaquet.add(new Plus4(u1, coultoAdd));
+                break;
+
+              case "ChangementDeSens":
+                this.cartePaquet.add(new ChangementDeSens(u1, coultoAdd));
+                break;
+
+              case "PasseTonTour":
+                this.cartePaquet.add(new PasseTonTour(u1, coultoAdd));
+                break;
+
+              case "Joker":
+                this.cartePaquet.add(new Joker(u1, coultoAdd));
+                break;
+
+              default:
+                throw new ErreurFichier("La carte lue dans le fichier ne correspond a aucune carte pouvant être créée");
+            }
+          }else{
+            throw new ErreurFichier("Il n'y a pas de valeur (Number) dans le premier mot de la ligne ");
+          }
+          //System.out.println("Carte : " + tk.sval);
+          //ligne = tk.nextToken();
+          //System.out.println("Couleur : " + tk.sval);
+        }
+        ligne = tk.nextToken();
+      }
+
+
+    }catch(IOException e){
+      System.out.println("Erreur : dans la lecture des caractères");
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   /**
    * String permettant d'afficher le contenu du paquet de carte
-   * @return [String ]
+   * @return [String] Paquet de carte sous forme d'une chaine de caractère
    */
   public String toString(){
     String toReturn;
@@ -160,7 +263,7 @@ public class PaquetDeCartes {
     toReturn = "Paquet de carte : [";
 
     for (Carte c : this.cartePaquet) {
-      toReturn = toReturn + System.getProperty("line.separator") + c;
+      toReturn = toReturn + System.getProperty("line.separator") + c + ",";
     }
 
     toReturn = toReturn + System.getProperty("line.separator") + " ] fin du Paquet ";

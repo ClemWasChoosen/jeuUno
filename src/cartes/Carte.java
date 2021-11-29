@@ -129,9 +129,9 @@ public abstract class Carte {
      * @return String du contenu 
      */
     public String toString() {
-        return this.getName() + "{" +
+        return this.getName() + "(" +
                 "couleur=" + couleur +
-                '}';
+                ')';
     }
 
 }

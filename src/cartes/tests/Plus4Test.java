@@ -85,6 +85,6 @@ class Plus4Test {
     @Test
     @DisplayName("Test fct GetName")
     void testGetName() {
-        assertEquals(plus4.getName(), "Plus4", "Erreur; getName ne retourne pas le nom de la classe (Plus4)");
+        assertEquals(plus4.getName(), "PlusQuatre", "Erreur; getName ne retourne pas le nom de la classe (Plus4)");
     }
 }

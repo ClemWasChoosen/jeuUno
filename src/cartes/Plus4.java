@@ -46,6 +46,6 @@ public class Plus4 extends Carte{
 
     @Override
     public String getName(){
-        return "Plus4";
+        return "PlusQuatre";
     }
 }

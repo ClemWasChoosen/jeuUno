@@ -84,6 +84,6 @@ class Plus2Test {
     @Test
     @DisplayName("Test fct GetName")
     void testGetName() {
-        assertEquals(plus2.getName(), "Plus2", "Erreur; getName ne retourne pas le nom de la classe (Plus2)");
+        assertEquals(plus2.getName(), "PlusDeux", "Erreur; getName ne retourne pas le nom de la classe (Plus2)");
     }
 }
