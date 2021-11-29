@@ -131,9 +131,8 @@ public class PaquetDeCartes {
     return paretourner;
   }
 */
-  void ecrire(String nomDeFichier) throws ErreurFichier{
+  public void ecrire(String nomDeFichier) throws ErreurFichier{
     File fichier = new File(nomDeFichier);
-  //  int resnbLine = nbLine.nextInt((30 - 10) + 1) + 10;
 
     if (!fichier.exists()){
       throw new ErreurFichier("Le fichier n'existe pas impossible d'écrire dessus");
@@ -141,8 +140,8 @@ public class PaquetDeCartes {
 
     try{
       BufferedWriter writer = new BufferedWriter(new FileWriter(nomDeFichier));
-      for (int i = 0; i <= this.cartePaquet.size(); i++){
-        writer.write(this.cartePaquet.get(i).toString() + this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
+      for (int i = 0; i < this.cartePaquet.size(); i++){
+        writer.write(this.cartePaquet.get(i).getName() + this.cartePaquet.get(i).getValeur() + " " + this.cartePaquet.get(i).getCouleur() +  "\n");
       }
       writer.close();
     }catch (IOException e){
