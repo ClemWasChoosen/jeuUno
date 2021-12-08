@@ -1,0 +1,137 @@
+@startuml
+abstract class Carte{
+ Carte(Uno u)
+ Carte(Uno u, Couleur, c)
+ {abstract} int getValeur()
+ {abstract} boolean peutEtreRecouvertePar(Carte c)
+ Couleur getCouleur()
+ void setCouleur(Couleur c)
+ boolean estSansCouleur()
+ boolean estDeCouleurCompatibleAvec(Carte c)
+ {abstract} boolean peutEtrePoseeSur(Chiffre c)
+ {abstract} boolean peutEtrePoseeSur(Plus2 c)
+ {abstract} boolean peutEtrePoseeSur(Plus4 c)
+ {abstract} boolean peutEtrePoseeSur(Joker c)
+ {abstract} boolean peutEtrePoseeSur(PasseTonTour c)
+ {abstract} boolean peutEtrePoseeSur(ChangementDeSens c)
+ {abstract} String getName()
+}
+
+class FabriqueCarte{
+ private PaquetDeCartes paquet
+ FabriqueCartes()
+ PaquetDeCartes getPaquet()
+ PaquetDeCartes getPaquet1Vert()
+ PaquetDeCartes getPaquet5Vert()
+ PaquetDeCartes getPaquetComplet()
+ {static} FabriqueCartes getInstance()
+}
+
+class PaquetDeCartes implements Iterable{
+ PaquetDeCartes(ArrayList<Carte> nbCarte)
+ PaquetDeCartes()
+ void ajouter(Carte ... cartesToAdd)
+ void retourner()
+ void melanger()
+ void ajouter(PaquetDeCartes cartesToAdd)
+ int getNombreDeCartes()
+ Carte getSommet()
+ void enlever(Carte carteToRemove)
+ void ecrire(String nomDeFichier) throws ErreurFichier
+ PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier
+ Iterator<Carte> iterator()
+}
+
+class Uno{
+ Uno()
+}
+
+class Chiffre{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+class PasseTonTour{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+class ChangementDeSens{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+class Joker{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+class Plus2{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+class Plus4{
+ int valeur
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+}
+
+enum Couleur{
+ Couleur ROUGE
+ Couleur VERT
+ Couleur BLEU
+ Couleur JAUNE
+}
+
+Carte --"1" Uno
+PaquetDeCarte --"*" Carte
+Carte --"1" Couleur
+Carte <-- Chiffre
+Carte <-- PasseTonTour
+Carte <-- Joker
+Carte <-- Plus2
+Carte <-- Plus4
+Carte <-- ChangementDeSens
+@enduml

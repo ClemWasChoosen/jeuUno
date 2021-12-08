@@ -1,10 +1,7 @@
 package cartes;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.lang.Math;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 
 import cartes.Couleur;
 import cartes.Carte;
@@ -15,7 +12,7 @@ import errorHandler.ErreurFichier;
  * @version TP5 - BPO
  */
 
-public class PaquetDeCartes{
+public class PaquetDeCartes implements Iterable<Carte>{
   private ArrayList<Carte> cartePaquet;
 
   /**
@@ -269,5 +266,10 @@ public class PaquetDeCartes{
     toReturn = toReturn + System.getProperty("line.separator") + " ] fin du Paquet ";
 
     return toReturn;
+  }
+
+  @Override
+  public Iterator<Carte> iterator() {
+    return this.cartePaquet.iterator();
   }
 }

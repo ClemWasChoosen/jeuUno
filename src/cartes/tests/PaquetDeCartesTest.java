@@ -1,5 +1,6 @@
 package cartes.tests;
 
+import cartes.Carte;
 import cartes.FabriqueCartes;
 import errorHandler.ErreurFichier;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,15 @@ class PaquetDeCartesTest {
         }catch (ErreurFichier e){
             e.printStackTrace();
             fail();
+        }
+    }
+    
+    @Test
+    @DisplayName("Tests sur l'iterateur")
+    void iteratorTest(){
+        for (Carte c :
+                this.fabCarte.getPaquet5Vert()) {
+            System.out.println(c);
         }
     }
 }
