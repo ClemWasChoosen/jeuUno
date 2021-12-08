@@ -30,5 +30,33 @@ public class Uno {
     }
 
     public void initialiser(int nbJoueurL){
+        creerLesJoueur(nbJoueurL);
+
+    }
+
+    public void creerLesJoueur(int nbJoueurL){
+        this.tabJoueur = new Joueur[nbJoueurL];
+
+        Scanner sc = new Scanner(System.in);
+        String nomJoueur = sc.nextLine();
+        this.tabJoueur[0] = new Humain(nomJoueur);
+
+        for (int i = 1; i < nbJoueurL; i++){
+            String nomBot;
+            if (i == 1){
+                nomBot = i + "erBots";
+            }else
+                nomBot = i + "emeBots";
+
+            this.tabJoueur[i] = new Bots(nomBot);
+        }
+    }
+
+    public void distribuerCarte(){
+
+    }
+
+    public void choisirQuiJoue(){
+
     }
 }
