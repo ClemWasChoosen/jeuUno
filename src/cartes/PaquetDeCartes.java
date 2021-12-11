@@ -6,6 +6,7 @@ import java.lang.Math;
 import cartes.Couleur;
 import cartes.Carte;
 import errorHandler.ErreurFichier;
+import errorHandler.ErreurUno;
 
 /**
  * @author Clément Oberhauser
@@ -146,7 +147,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
     }
   }
 
-  public PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier{
+  public PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier, ErreurUno {
     Uno u1 = new Uno();
     //String path = "testLoop.txt";
     int nb = 0;

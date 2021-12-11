@@ -4,6 +4,8 @@ package cartes.tests;
 import cartes.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import errorHandler.ErreurUno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +20,7 @@ class ChiffreTest {
     Uno u1;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws ErreurUno {
         u1 = new Uno();
         chiffre = new Chiffre(u1, Couleur.BLEU, 9);
     }

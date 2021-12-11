@@ -1,6 +1,7 @@
 package cartes.tests;
 
 import cartes.*;
+import errorHandler.ErreurUno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class Plus2Test {
     Uno u1;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws ErreurUno {
         u1 = new Uno();
         plus2 = new Plus2(u1, Couleur.BLEU);
     }

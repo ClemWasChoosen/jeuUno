@@ -3,6 +3,7 @@ package cartes.tests;
 import cartes.Carte;
 import cartes.FabriqueCartes;
 import errorHandler.ErreurFichier;
+import errorHandler.ErreurUno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class PaquetDeCartesTest {
     void ecrireTest() {
         try{
             fabCarte.getPaquet5Vert().ecrire("PaquetDeCarteTest.txt");
-        }catch (ErreurFichier e){
+        }catch (ErreurFichier | ErreurUno e){
             e.printStackTrace();
             fail();
         }
@@ -34,7 +35,7 @@ class PaquetDeCartesTest {
         try{
             fabCarte.getPaquetComplet().lire("PaquetDeCarteTest.txt");
             System.out.println(fabCarte);
-        }catch (ErreurFichier e){
+        }catch (ErreurFichier | ErreurUno e){
             e.printStackTrace();
             fail();
         }
@@ -42,7 +43,7 @@ class PaquetDeCartesTest {
     
     @Test
     @DisplayName("Tests sur l'iterateur")
-    void iteratorTest(){
+    void iteratorTest() throws ErreurUno {
         for (Carte c :
                 this.fabCarte.getPaquet5Vert()) {
             System.out.println(c);

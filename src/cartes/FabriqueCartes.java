@@ -1,6 +1,7 @@
 package cartes;
 
 import cartes.*;
+import errorHandler.ErreurUno;
 
 public class FabriqueCartes {
   private static FabriqueCartes instance = new FabriqueCartes();
@@ -20,19 +21,19 @@ public class FabriqueCartes {
     return this.paquet;
   }
 
-  public PaquetDeCartes getPaquet1Vert(){
+  public PaquetDeCartes getPaquet1Vert() throws ErreurUno {
     Uno u1 = new Uno();
     this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, 5));
     return this.paquet;
   }
 
-  public PaquetDeCartes getPaquet5Vert(){
+  public PaquetDeCartes getPaquet5Vert() throws ErreurUno {
     Uno u1 = new Uno();
     this.paquet.ajouter(new Chiffre(u1, Couleur.VERT, 3), new Plus2(u1, Couleur.VERT), new Chiffre(u1, Couleur.VERT, 7), new Chiffre(u1, Couleur.VERT, 9), new Chiffre(u1, Couleur.VERT, 2));
     return this.paquet;
   }
 
-  public PaquetDeCartes getPaquetComplet() {
+  public PaquetDeCartes getPaquetComplet() throws ErreurUno {
     Uno u1 = new Uno();
     for (int j = 0; j < 2; j++)
         for (int i = 1; i < 10; i++) {
