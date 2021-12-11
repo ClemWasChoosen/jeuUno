@@ -2,7 +2,7 @@ package cartes;
 
 public abstract class Joueur {
     protected String nom;
-    protected Uno u;
+    protected PaquetDeCartes pdcJoueur;
     //A ajouter si necessaire dans le futur
     //protected int rang
 
@@ -10,8 +10,8 @@ public abstract class Joueur {
         this.nom = nom;
     }
 
-    public void setUno(Uno uno){
-        this.u = uno;
+    public void setPaquetJoueur(PaquetDeCartes pdcJoueur){
+        this.pdcJoueur = pdcJoueur;
     }
 
 }
