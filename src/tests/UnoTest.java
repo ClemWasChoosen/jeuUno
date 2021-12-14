@@ -40,7 +40,7 @@ class UnoTest {
             //System.out.println(uTest.getTabJoueur()[j].getPaquetJoueur());
             assertEquals(uTest.getTabJoueur()[j].getPaquetJoueur().getNombreDeCartes(), 7, "Erreur: un des paquet n'a pas 7 cartes à l'initialisation");
         }
-        //assertEquals(uTest.getPioche().getNombreDeCartes(), );
+        assertEquals(uTest.getPioche().getNombreDeCartes(), 108 - 7*uTest.getNbJoueur());
         //System.out.println(uTest.getTabJoueur()[0]);
     }
 

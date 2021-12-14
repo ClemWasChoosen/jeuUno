@@ -66,8 +66,7 @@ public class Uno {
             throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
 
         this.pioche = FabriqueCartes.getInstance().getPaquetComplet();
-        System.out.println(this.pioche.getNombreDeCartes());
-        //this.pioche.melanger();
+        this.pioche.melanger();
         this.talon = new PaquetDeCartes();
 
         for (int i = 0; i < this.nbJoueur; i++){

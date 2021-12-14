@@ -60,10 +60,9 @@ public class FabriqueCartes {
       this.paquet.ajouter(new ChangementDeSens(u1, Couleur.BLEU));
       this.paquet.ajouter(new ChangementDeSens(u1, Couleur.ROUGE));
       this.paquet.ajouter(new ChangementDeSens(u1, Couleur.JAUNE));
-
     }
 
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 4; i++){
       this.paquet.ajouter(new Joker(u1, null));
       this.paquet.ajouter(new Plus4(u1, null));
     }
