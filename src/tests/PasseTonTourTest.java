@@ -1,4 +1,4 @@
-package uno.cartes.tests;
+package tests;
 
 import uno.cartes.*;
 import org.junit.jupiter.api.BeforeEach;

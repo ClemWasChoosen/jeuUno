@@ -96,29 +96,29 @@ public class PaquetDeCartes implements Iterable<Carte>{
    * affiche une erreur si elle n'y est pas trouvée
    * @param carteToRemove  [Carte présente dans le paquet à enlever]
    */
-  public void enlever(Carte carteToRemove){
+  public Carte enlever(Carte carteToRemove){
     assert(carteToRemove != null): "La carte a enlever vaut null, impossible de la supprimer | fct enlever, PaquetDeCartes";
     assert(this.cartePaquet.lastIndexOf(carteToRemove) != -1): "La carte ne semble pas présente dans le paquet ! fct enlever, PaquetDeCartes";
     assert(this.estVide() != true): "Impossible d'enlever une carte de la liste, la collection est vide, fct enlever PaquetDeCartes";
-    this.cartePaquet.remove(this.cartePaquet.lastIndexOf(carteToRemove));
+    return this.cartePaquet.remove(this.cartePaquet.lastIndexOf(carteToRemove));
   }
 
   /**
    * Retourne une carte piochée aléatoirement dans le paquet
    * @return [Carte du paquet]
    */
- /* public Carte piocher(){
+  public Carte piocher(){
     Integer rand = (int)(Math.random() * this.getNombreDeCartes() + 1);
     if (rand == this.getNombreDeCartes()) {
       rand--;
     }
     // System.out.println(rand);
     assert(rand != 0 || this.cartePaquet.size() != 0): "Le paquet de carte est vide, on ne peut pas piocher dedans (cl PaquetDeCartes / piocher)";
-    Carte paretourner = new Carte(this.cartePaquet.get(rand));
-    enlever(this.cartePaquet.get(rand));
-    return paretourner;
+    //Carte paretourner = new Carte(this.cartePaquet.get(rand));
+    return enlever(this.cartePaquet.get(rand));
+    //return paretourner;
   }
-*/
+
 
   /**
    * Retourne une carte piochée aléatoirement dans le paquet

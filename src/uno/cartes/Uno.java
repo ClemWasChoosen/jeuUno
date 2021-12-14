@@ -10,11 +10,12 @@ public class Uno {
     private int sens;
     private int joueurActuel;
     private int nbJoueur;
-    private boolean etatJeu;
+    //private boolean etatJeu;
     private Joueur[] tabJoueur;
+    private PaquetDeCartes talon;
+    private PaquetDeCartes pioche;
 
-    public Uno() throws ErreurUno {
-
+    public Uno() {
     }
 
     public void initialiser(int nbJoueurL) throws ErreurUno{
@@ -33,8 +34,8 @@ public class Uno {
         }while (this.nbJoueur < 2 || this.nbJoueur > 7);
 
         creerLesJoueur(nbJoueurL);
-
-
+        distribuerCarte();
+        choisirQuiJoue();
     }
 
     public void creerLesJoueur(int nbJoueurL){
@@ -57,15 +58,21 @@ public class Uno {
     }
 
     public void distribuerCarte() throws ErreurUno{
+        this.pioche.melanger();
         if (this.tabJoueur == null)
             throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
 
+        this.pioche = FabriqueCartes.getInstance().getPaquetComplet();
+        this.talon = new PaquetDeCartes();
         for (int i = 0; i < this.nbJoueur; i++){
-            this.tabJoueur[i].setUno(this);
+            for (int j = 0; j < 7; j++){
+                this.pioche.ajouter(this.tabJoueur[i].getPaquetJoueur().piocher());
+            }
         }
     }
 
     public void choisirQuiJoue(){
-
+        this.joueurActuel = (int)(Math.random() * 4);
+        this.sens = 1;
     }
 }
