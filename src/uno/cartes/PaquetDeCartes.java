@@ -1,11 +1,8 @@
-package cartes;
+package uno.cartes;
 import java.io.*;
 import java.util.*;
-import java.lang.Math;
 
-import cartes.Couleur;
-import cartes.Carte;
-import errorHandler.ErreurFichier;
+import uno.errorHandler.ErreurFichier;
 
 /**
  * @author Clément Oberhauser
@@ -25,7 +22,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
 
   /**
    * Contructeur par recopie d'un paquet de carte
-   * @param nbCarte  [ArrayList contenant les cartes]
+   * @param nbCarte  [ArrayList contenant les uno.cartes]
    */
   public PaquetDeCartes(ArrayList<Carte> nbCarte){
     assert(nbCarte != null): "L'ArrayList nbCarte dans le contructeur PaquetDeCartes: Erreur !";
@@ -41,7 +38,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
   }
 
   /**
-   * Ajoute des cartes dans le paquet actuel
+   * Ajoute des uno.cartes dans le paquet actuel
    * @param cartesToAdd  [Cartes à ajouter au paquet]
    */
   public void ajouter(Carte ... cartesToAdd){
@@ -51,7 +48,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
   }
 
   /**
-   * Inverse la position des cartes dans le paquet
+   * Inverse la position des uno.cartes dans le paquet
    * abcd -> dcba
    */
   public void retourner(){
@@ -78,7 +75,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
   }
 
   /**
-   * Retourne la taille du paquet de cartes
+   * Retourne la taille du paquet de uno.cartes
    * @return [Int taille du paquet]
    */
   public int getNombreDeCartes(){
@@ -86,7 +83,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
   }
 
   /**
-   * Retourne la carte qui est au sommet du paquet de cartes
+   * Retourne la carte qui est au sommet du paquet de uno.cartes
    * @return [Carte]
    */
   public Carte getSommet(){

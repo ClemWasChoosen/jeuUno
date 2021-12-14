@@ -1,13 +1,12 @@
-package cartes;
+package uno.cartes;
 
-public class PasseTonTour extends Carte{
-    public PasseTonTour(Uno u, Couleur c){
+public class Joker extends Carte {
+    public Joker(Uno u, Couleur c){
         super(u, c);
     }
-
     @Override
     public int getValeur() {
-        return 20;
+        return 50;
     }
 
     @Override
@@ -17,39 +16,36 @@ public class PasseTonTour extends Carte{
 
     @Override
     public boolean peutEtrePoseeSur(Chiffre c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
     public boolean peutEtrePoseeSur(Plus2 c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
     public boolean peutEtrePoseeSur(Plus4 c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
-    /**TODO
-     * Couleur de Joker peut être à null
-     */
     public boolean peutEtrePoseeSur(Joker c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
     public boolean peutEtrePoseeSur(PasseTonTour c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
-        return this.getCouleur() == c.getCouleur();
+        return true;
     }
 
     @Override
     public String getName(){
-        return "PasseTonTour";
+        return "Joker";
     }
 }

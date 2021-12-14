@@ -1,16 +1,12 @@
-package cartes.tests;
+package uno.cartes.tests;
 
 
-import cartes.*;
+import uno.cartes.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.plaf.SplitPaneUI;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ChiffreTest {
 

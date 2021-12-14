@@ -1,8 +1,4 @@
-package cartes;
-
-import cartes.Carte;
-import cartes.Couleur;
-import cartes.Uno;
+package uno.cartes;
 
 public class Chiffre extends Carte {
     protected int val;

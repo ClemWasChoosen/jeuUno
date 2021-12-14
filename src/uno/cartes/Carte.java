@@ -1,6 +1,4 @@
-package cartes;
-import cartes.Uno;
-import cartes.Chiffre;
+package uno.cartes;
 
 public abstract class Carte {
 

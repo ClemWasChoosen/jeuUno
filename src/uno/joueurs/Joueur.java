@@ -1,4 +1,6 @@
-package cartes;
+package uno.joueurs;
+
+import uno.cartes.Uno;
 
 public abstract class Joueur {
     protected String nom;

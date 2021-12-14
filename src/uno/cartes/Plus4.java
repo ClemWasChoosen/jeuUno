@@ -1,7 +1,7 @@
-package cartes;
+package uno.cartes;
 
-public class Joker extends Carte {
-    public Joker(Uno u, Couleur c){
+public class Plus4 extends Carte{
+    public Plus4(Uno u, Couleur c){
         super(u, c);
     }
     @Override
@@ -46,6 +46,6 @@ public class Joker extends Carte {
 
     @Override
     public String getName(){
-        return "Joker";
+        return "PlusQuatre";
     }
 }

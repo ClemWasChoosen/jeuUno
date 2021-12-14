@@ -1,8 +1,7 @@
-package cartes;
+package uno.cartes;
 
-public class Plus2 extends Carte{
-
-    public Plus2(Uno u, Couleur c){
+public class ChangementDeSens extends Carte{
+    public ChangementDeSens(Uno u, Couleur c){
         super(u, c);
     }
 
@@ -33,21 +32,21 @@ public class Plus2 extends Carte{
 
     @Override
     public boolean peutEtrePoseeSur(Joker c) {
-        return true;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public boolean peutEtrePoseeSur(PasseTonTour c) {
-        return this.getCouleur() == this.getCouleur();
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public boolean peutEtrePoseeSur(ChangementDeSens c) {
-        return false;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override
     public String getName(){
-        return "PlusDeux";
+        return "ChangementDeSens";
     }
 }

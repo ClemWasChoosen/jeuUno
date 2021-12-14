@@ -1,8 +1,8 @@
-package cartes.tests;
+package uno.cartes.tests;
 
-import cartes.Carte;
-import cartes.FabriqueCartes;
-import errorHandler.ErreurFichier;
+import uno.cartes.Carte;
+import uno.cartes.FabriqueCartes;
+import uno.errorHandler.ErreurFichier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

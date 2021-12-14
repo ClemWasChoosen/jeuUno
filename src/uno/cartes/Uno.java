@@ -1,7 +1,10 @@
-package cartes;
+package uno.cartes;
 
 import java.util.Scanner;
-import errorHandler.ErreurUno;
+import uno.errorHandler.ErreurUno;
+import uno.joueurs.Bots;
+import uno.joueurs.Humain;
+import uno.joueurs.Joueur;
 
 public class Uno {
     private int sens;
@@ -11,6 +14,10 @@ public class Uno {
     private Joueur[] tabJoueur;
 
     public Uno() throws ErreurUno {
+
+    }
+
+    public void initialiser(int nbJoueurL) throws ErreurUno{
         Scanner sc = new Scanner(System.in);
         int limiteEntree = 0;
         System.out.println("Entrez le nombre de bots avec qui vous voulez jouer");
@@ -25,12 +32,8 @@ public class Uno {
 
         }while (this.nbJoueur < 2 || this.nbJoueur > 7);
 
-        initialiser(this.nbJoueur);
-
-    }
-
-    public void initialiser(int nbJoueurL){
         creerLesJoueur(nbJoueurL);
+
 
     }
 
@@ -55,7 +58,7 @@ public class Uno {
 
     public void distribuerCarte() throws ErreurUno{
         if (this.tabJoueur == null)
-            throw new ErreurUno("Impossible de distribuer les cartes, le tableau contenant les joueurs est à null");
+            throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
 
         for (int i = 0; i < this.nbJoueur; i++){
             this.tabJoueur[i].setUno(this);
