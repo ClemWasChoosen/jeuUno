@@ -47,6 +47,10 @@ public class PaquetDeCartes implements Iterable<Carte>{
     this.cartePaquet.addAll(Arrays.asList(cartesToAdd));
   }
 
+  public void clearPaquet(){
+    this.cartePaquet.removeAll(this.cartePaquet);
+  }
+
   /**
    * Inverse la position des uno.cartes dans le paquet
    * abcd -> dcba
@@ -114,7 +118,6 @@ public class PaquetDeCartes implements Iterable<Carte>{
     }
     // System.out.println(rand);
     assert(rand != 0 || this.cartePaquet.size() != 0): "Le paquet de carte est vide, on ne peut pas piocher dedans (cl PaquetDeCartes / piocher)";
-    //Carte paretourner = new Carte(this.cartePaquet.get(rand));
     return enlever(this.cartePaquet.get(rand));
     //return paretourner;
   }

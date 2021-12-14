@@ -1,5 +1,6 @@
 package uno.cartes;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import uno.errorHandler.ErreurUno;
 import uno.joueurs.Bots;
@@ -39,12 +40,14 @@ public class Uno {
     }
 
     public void creerLesJoueur(int nbJoueurL){
+        this.nbJoueur = nbJoueurL;
         this.tabJoueur = new Joueur[nbJoueurL];
 
-        Scanner sc = new Scanner(System.in);
-        String nomJoueur = sc.nextLine();
-        System.out.println("Entrez votre nom de joueur");
-        this.tabJoueur[0] = new Humain(nomJoueur);
+        //Scanner sc = new Scanner(System.in);
+        //String nomJoueur = sc.nextLine();
+        //System.out.println("Entrez votre nom de joueur");
+        this.tabJoueur[0] = new Humain("nomJoueur");
+        this.tabJoueur[0].getPaquetJoueur().clearPaquet();
 
         for (int i = 1; i < nbJoueurL; i++){
             String nomBot;
@@ -54,25 +57,95 @@ public class Uno {
                 nomBot = i + "emeBots";
 
             this.tabJoueur[i] = new Bots(nomBot);
+            this.tabJoueur[i].getPaquetJoueur().clearPaquet();
         }
     }
 
     public void distribuerCarte() throws ErreurUno{
-        this.pioche.melanger();
         if (this.tabJoueur == null)
             throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
 
         this.pioche = FabriqueCartes.getInstance().getPaquetComplet();
+        System.out.println(this.pioche.getNombreDeCartes());
+        //this.pioche.melanger();
         this.talon = new PaquetDeCartes();
+
         for (int i = 0; i < this.nbJoueur; i++){
             for (int j = 0; j < 7; j++){
-                this.pioche.ajouter(this.tabJoueur[i].getPaquetJoueur().piocher());
+                this.tabJoueur[i].getPaquetJoueur().ajouter(this.pioche.piocher());
             }
         }
+
+        //this.tabJoueur[0].getPaquetJoueur().ajouter(this.pioche.piocher());
+        //System.out.println(this.pioche.piocher());
     }
 
     public void choisirQuiJoue(){
         this.joueurActuel = (int)(Math.random() * 4);
         this.sens = 1;
+    }
+
+    /**
+     * GETTER & SETTER
+     */
+
+    public int getSens() {
+        return sens;
+    }
+
+    public void setSens(int sens) {
+        this.sens = sens;
+    }
+
+    public int getJoueurActuel() {
+        return joueurActuel;
+    }
+
+    public void setJoueurActuel(int joueurActuel) {
+        this.joueurActuel = joueurActuel;
+    }
+
+    public int getNbJoueur() {
+        return nbJoueur;
+    }
+
+    public void setNbJoueur(int nbJoueur) {
+        this.nbJoueur = nbJoueur;
+    }
+
+    public Joueur[] getTabJoueur() {
+        return tabJoueur;
+    }
+
+    public void setTabJoueur(Joueur[] tabJoueur) {
+        this.tabJoueur = tabJoueur;
+    }
+
+    public PaquetDeCartes getTalon() {
+        return talon;
+    }
+
+    public void setTalon(PaquetDeCartes talon) {
+        this.talon = talon;
+    }
+
+    public PaquetDeCartes getPioche() {
+        return pioche;
+    }
+
+    public void setPioche(PaquetDeCartes pioche) {
+        this.pioche = pioche;
+    }
+
+    @Override
+    public String toString() {
+        return "Uno{" +
+                "sens=" + sens +
+                ", joueurActuel=" + joueurActuel +
+                ", nbJoueur=" + nbJoueur +
+                ", tabJoueur=" + Arrays.toString(tabJoueur) +
+                ", talon=" + talon +
+                ", pioche=" + pioche +
+                '}';
     }
 }

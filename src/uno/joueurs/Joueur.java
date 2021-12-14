@@ -12,11 +12,18 @@ public abstract class Joueur {
 
     public Joueur(String nom){
         this.nom = nom;
-        this.paquetJoueur = FabriqueCartes.getInstance().getPaquet();
+        this.paquetJoueur = new PaquetDeCartes();
     }
 
     public PaquetDeCartes getPaquetJoueur(){
         return this.paquetJoueur;
     }
 
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "nom='" + nom + '\'' +
+                ", paquetJoueur=" + paquetJoueur +
+                '}';
+    }
 }
