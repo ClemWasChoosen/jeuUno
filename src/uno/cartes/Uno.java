@@ -102,6 +102,10 @@ public class Uno {
         return this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes();
     }
 
+    public boolean estUnJoueurHumain(){
+        return this.tabJoueur[this.joueurActuel].joueurEstHumain();
+    }
+
     /**
      * GETTER & SETTER
      */

@@ -30,4 +30,6 @@ public abstract class Joueur {
                 ", paquetJoueur=" + paquetJoueur +
                 '}';
     }
+
+    public abstract boolean joueurEstHumain();
 }
