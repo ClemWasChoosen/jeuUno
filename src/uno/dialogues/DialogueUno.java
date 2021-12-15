@@ -45,4 +45,28 @@ public class DialogueUno {
         }
         return ligne;
     }
+
+    public char lireCoup(){
+        System.out.println("\n(p) : piocher | (j) jouer la carte correspondante");
+                //(1 - " + this.u1.getNbCarteEnMainJoueur() +
+        System.out.print("Quel coup voulez vous jouer : ");
+        sc = new Scanner(System.in);
+        char coupAJouer;
+
+        do {
+            coupAJouer = sc.next().charAt(0);
+            if (coupAJouer != 'p' && coupAJouer != 'j')
+                System.out.println("Coup non jouable entrez en un nouveau");
+        }while (coupAJouer != 'p' && coupAJouer != 'j');
+
+
+        return coupAJouer;
+    }
+
+    public void reagir(){
+        System.out.println("========\nCarte sur le talon");
+        System.out.println(u1.getPioche().getSommet());
+        System.out.println("========");
+
+    }
 }

@@ -77,6 +77,7 @@ public class Uno {
         this.pioche = FabriqueCartes.getInstance().getPaquetComplet();
         this.pioche.melanger();
         this.talon = new PaquetDeCartes();
+        this.talon.ajouter(this.pioche.piocher());
 
         for (int i = 0; i < this.nbJoueur; i++){
             for (int j = 0; j < 7; j++){
@@ -95,6 +96,10 @@ public class Uno {
 
     public void setDialogue(DialogueUno diagPara){
         this.diagUno = diagPara;
+    }
+
+    public int getNbCarteEnMainJoueur(){
+        return this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes();
     }
 
     /**
