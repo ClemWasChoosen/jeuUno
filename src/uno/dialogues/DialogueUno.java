@@ -68,7 +68,11 @@ public class DialogueUno {
         System.out.println(u1.getPioche().getSommet());
         System.out.println("========");
 
-
+        if (this.u1.estUnJoueurHumain()){
+            //u1.jouer(lireCoup());
+        }else{
+            //u1.jouer('');
+        }
 
     }
 }
