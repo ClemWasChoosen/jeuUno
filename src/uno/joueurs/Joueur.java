@@ -19,6 +19,10 @@ public abstract class Joueur {
         return this.paquetJoueur;
     }
 
+    public String getNom(){
+        return this.nom;
+    }
+
     @Override
     public String toString() {
         return "Joueur{" +

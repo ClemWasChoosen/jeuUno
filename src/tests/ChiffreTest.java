@@ -5,7 +5,7 @@ import uno.cartes.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import errorHandler.ErreurUno;
+import uno.errorHandler.ErreurUno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

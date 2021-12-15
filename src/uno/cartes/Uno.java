@@ -1,7 +1,10 @@
 package uno.cartes;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import uno.dialogues.DialogueUno;
 import uno.errorHandler.ErreurUno;
 import uno.joueurs.Bots;
 import uno.joueurs.Humain;
@@ -15,16 +18,22 @@ public class Uno {
     private Joueur[] tabJoueur;
     private PaquetDeCartes talon;
     private PaquetDeCartes pioche;
+    private DialogueUno diagUno;
 
     public Uno() {
     }
 
-    public void initialiser(int nbJoueurL) throws ErreurUno{
-        Scanner sc = new Scanner(System.in);
-        int limiteEntree = 0;
-        System.out.println("Entrez le nombre de bots avec qui vous voulez jouer");
-        do {
-            this.nbJoueur = sc.nextInt();
+    public void initialiser(int nbJoueurL, String nomJoueur) throws ErreurUno{
+        //Scanner sc = new Scanner(System.in);
+        //int limiteEntree = 0;
+        //System.out.println("Entrez le nombre de bots avec qui vous voulez jouer");
+        /*do {
+            try{
+                this.nbJoueur = sc.nextInt();
+            }catch(InputMismatchException i){
+                initialiser(nbJoueurL);
+            }
+
             limiteEntree++;
 
             if (limiteEntree >= 15)
@@ -32,21 +41,21 @@ public class Uno {
             if (this.nbJoueur < 2 || this.nbJoueur > 7)
                 System.out.println(this.nbJoueur + " n'est pas compris entre 1 et 7, réessayez");
 
-        }while (this.nbJoueur < 2 || this.nbJoueur > 7);
+        }while (this.nbJoueur < 2 || this.nbJoueur > 7);*/
 
-        creerLesJoueur(nbJoueurL);
+        creerLesJoueur(nbJoueurL, nomJoueur);
         distribuerCarte();
         choisirQuiJoue();
     }
 
-    public void creerLesJoueur(int nbJoueurL){
+    public void creerLesJoueur(int nbJoueurL, String nomJoueur){
         this.nbJoueur = nbJoueurL;
         this.tabJoueur = new Joueur[nbJoueurL];
 
         //Scanner sc = new Scanner(System.in);
         //String nomJoueur = sc.nextLine();
         //System.out.println("Entrez votre nom de joueur");
-        this.tabJoueur[0] = new Humain("nomJoueur");
+        this.tabJoueur[0] = new Humain(nomJoueur);
         this.tabJoueur[0].getPaquetJoueur().clearPaquet();
 
         for (int i = 1; i < nbJoueurL; i++){
@@ -82,6 +91,10 @@ public class Uno {
     public void choisirQuiJoue(){
         this.joueurActuel = (int)(Math.random() * 4);
         this.sens = 1;
+    }
+
+    public void setDialogue(DialogueUno diagPara){
+        this.diagUno = diagPara;
     }
 
     /**

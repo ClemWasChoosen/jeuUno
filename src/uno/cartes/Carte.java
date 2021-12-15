@@ -7,7 +7,7 @@ public abstract class Carte {
 
     /**
      * Contructeur de carte
-     * @param uno Jeu uno
+     * @param uno uno.jeu uno
      * @param couleur  Couleur de la carte
      */
     public Carte(Uno uno, Couleur couleur) {
@@ -19,7 +19,7 @@ public abstract class Carte {
 
     /**
      * Constructeur par recopie de Carte
-     * @param u Jeu à copier
+     * @param u uno.jeu à copier
      */
     public Carte(Uno u) {
       assert(u != null):"Uno dans le constructeur Carte(Uno uno, Couleur couleur) est NULL";
