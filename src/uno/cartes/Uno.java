@@ -108,8 +108,11 @@ public class Uno {
     }
 
     public void jouer(char coupAjouer){
-        if (coupAjouer == '*') {
-            //this.tabJoueur[joueurActuel].jouer();
+        if (coupAjouer == '*' && this.joueurActuel != 0) {
+            this.talon.ajouter(this.tabJoueur[joueurActuel].jouer(this.talon.getSommet()));
+            if (this.talon.getCarte(talon.getNombreDeCartes() - 1) == null) {
+                this.talon.enlever(talon.getCarte(talon.getNombreDeCartes() - 1));
+            }
         }else{
             this.tabJoueur[joueurActuel].jouer(coupAjouer);
         }

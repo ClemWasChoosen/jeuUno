@@ -39,10 +39,12 @@ public abstract class Joueur {
     public Carte jouer(Carte talon){
         if (this.paquetJoueur.getNombreDeCartes() > 0){
             for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
-                //if (this.paquetJoueur.)
+                if (talon.peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
+                    return this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));
+                }
             }
         }
-        return this.paquetJoueur.getCarte(1);
+        return null;
     }
 
     public abstract boolean joueurEstHumain();
