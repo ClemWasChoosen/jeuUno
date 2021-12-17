@@ -46,6 +46,7 @@ public class Uno {
         creerLesJoueur(nbJoueurL, nomJoueur);
         distribuerCarte();
         choisirQuiJoue();
+        this.diagUno.reagir();
     }
 
     public void creerLesJoueur(int nbJoueurL, String nomJoueur){
@@ -104,6 +105,14 @@ public class Uno {
 
     public boolean estUnJoueurHumain(){
         return this.tabJoueur[this.joueurActuel].joueurEstHumain();
+    }
+
+    public void jouer(char coupAjouer){
+        if (coupAjouer == '*') {
+            //this.tabJoueur[joueurActuel].jouer();
+        }else{
+            this.tabJoueur[joueurActuel].jouer(coupAjouer);
+        }
     }
 
     /**

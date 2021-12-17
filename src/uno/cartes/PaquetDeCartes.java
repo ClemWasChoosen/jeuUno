@@ -122,6 +122,10 @@ public class PaquetDeCartes implements Iterable<Carte>{
     //return paretourner;
   }
 
+  public Carte getCarte(int index){
+    return this.cartePaquet.get(index);
+  }
+
 
   /**
    * Retourne une carte piochée aléatoirement dans le paquet

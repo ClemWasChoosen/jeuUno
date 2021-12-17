@@ -1,5 +1,6 @@
 package uno.joueurs;
 
+import uno.cartes.Carte;
 import uno.cartes.FabriqueCartes;
 import uno.cartes.PaquetDeCartes;
 import uno.cartes.Uno;
@@ -29,6 +30,19 @@ public abstract class Joueur {
                 "nom='" + nom + '\'' +
                 ", paquetJoueur=" + paquetJoueur +
                 '}';
+    }
+
+    public void jouer(char coupAJouer){
+
+    }
+
+    public Carte jouer(Carte talon){
+        if (this.paquetJoueur.getNombreDeCartes() > 0){
+            for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
+                //if (this.paquetJoueur.)
+            }
+        }
+        return this.paquetJoueur.getCarte(1);
     }
 
     public abstract boolean joueurEstHumain();

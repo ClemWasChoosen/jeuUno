@@ -1,7 +1,6 @@
 package tests;
 
-import uno.cartes.Carte;
-import uno.cartes.FabriqueCartes;
+import uno.cartes.*;
 import uno.errorHandler.ErreurFichier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,5 +46,13 @@ class PaquetDeCartesTest {
                 this.fabCarte.getPaquet5Vert()) {
             System.out.println(c);
         }
+    }
+
+    @Test
+    @DisplayName("Test de la récupération d'une carte")
+    void testGetCarte(){
+        Uno u1 = new Uno();
+        Chiffre cTest = new Chiffre(u1, Couleur.VERT, 9);
+        assertEquals(this.fabCarte.getPaquet5Vert().getCarte(3).getValeur(), 9, "Erreur: getCarte ne retourne pas la carte attendue");
     }
 }

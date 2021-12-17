@@ -47,7 +47,7 @@ public class DialogueUno {
     }
 
     public char lireCoup(){
-        System.out.println("\n(p) : piocher | (j) jouer la carte correspondante");
+        System.out.println("\n(p) : piocher | (j) jouer une carteàç");
                 //(1 - " + this.u1.getNbCarteEnMainJoueur() +
         System.out.print("Quel coup voulez vous jouer : ");
         sc = new Scanner(System.in);
@@ -71,7 +71,7 @@ public class DialogueUno {
         if (this.u1.estUnJoueurHumain()){
             //u1.jouer(lireCoup());
         }else{
-            //u1.jouer('');
+            //u1.jouer('*');
         }
 
     }
