@@ -107,15 +107,37 @@ public class Uno {
         return this.tabJoueur[this.joueurActuel].joueurEstHumain();
     }
 
-    public void jouer(char coupAjouer){
-        if (coupAjouer == '*' && this.joueurActuel != 0) {
-            this.talon.ajouter(this.tabJoueur[joueurActuel].jouer(this.talon.getSommet()));
+    public void jouer(String coupAjouer){
+        if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0) {
+            /*this.talon.ajouter(this.tabJoueur[joueurActuel].jouer(this.talon.getSommet()));
             if (this.talon.getCarte(talon.getNombreDeCartes() - 1) == null) {
                 this.talon.enlever(talon.getCarte(talon.getNombreDeCartes() - 1));
-            }
+            }*/
+            if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
+                this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche);
+            System.out.println("test " + this.talon);
         }else{
-            this.tabJoueur[joueurActuel].jouer(coupAjouer);
+            this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }
+
+        this.joueurActuel++;
+        if (this.joueurActuel == this.nbJoueur)
+            this.joueurActuel = 0;
+
+
+        this.diagUno.reagir();
+    }
+
+    public String toStringPaquet(){
+        String res = "# ";
+        for (Carte c :
+                this.tabJoueur[this.joueurActuel].getPaquetJoueur()) {
+            res = res + " / " + c;
+        }
+
+        res = res + " #";
+
+        return res;
     }
 
     /**

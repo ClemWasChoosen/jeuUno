@@ -1,5 +1,7 @@
 package uno.dialogues;
 
+import uno.cartes.Carte;
+import uno.cartes.PaquetDeCartes;
 import uno.cartes.Uno;
 import uno.errorHandler.ErreurUno;
 
@@ -46,33 +48,50 @@ public class DialogueUno {
         return ligne;
     }
 
-    public char lireCoup(){
-        System.out.println("\n(p) : piocher | (j) jouer une carteàç");
+    public void afficherPaquetJoueur(){
+        if (this.u1.getNbCarteEnMainJoueur() > 0){
+            System.out.println("Paquet de " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + ":");
+            System.out.print(this.u1.toStringPaquet());
+            System.out.println();
+        }
+    }
+
+    public String lireCoup(){
+        System.out.println("\n(p) : piocher | (j) jouer une carte");
                 //(1 - " + this.u1.getNbCarteEnMainJoueur() +
         System.out.print("Quel coup voulez vous jouer : ");
         sc = new Scanner(System.in);
-        char coupAJouer;
+        String coupAJouer;
 
         do {
-            coupAJouer = sc.next().charAt(0);
-            if (coupAJouer != 'p' && coupAJouer != 'j')
+            coupAJouer = sc.nextLine();
+            if (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j')
                 System.out.println("Coup non jouable entrez en un nouveau");
-        }while (coupAJouer != 'p' && coupAJouer != 'j');
+        }while (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j');
 
+        if (coupAJouer.charAt(0) == 'j'){
+            do {
+                System.out.println("Quelle carte voulez-vous jouer ? (0 - " + (this.u1.getNbCarteEnMainJoueur() - 1) + ")");
+                coupAJouer = sc.nextLine();
+            }while (!Character.isDigit(coupAJouer.charAt(0)) && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) < this.u1.getNbCarteEnMainJoueur()  - 1);
+        }
 
         return coupAJouer;
     }
 
     public void reagir(){
-        System.out.println("========\nCarte sur le talon");
-        System.out.println(u1.getPioche().getSommet());
+        System.out.println("========\nCarte sur le talon :");
+        System.out.println(" -" + u1.getTalon().getSommet());
         System.out.println("========");
 
-        if (this.u1.estUnJoueurHumain()){
-            //u1.jouer(lireCoup());
-        }else{
-            //u1.jouer('*');
-        }
+        System.out.println("Au tour du joueur " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + " de jouer...");
 
+        if (this.u1.estUnJoueurHumain()){
+            afficherPaquetJoueur();
+            u1.jouer(lireCoup());
+        }else{
+            //afficherPaquetJoueur();
+            u1.jouer("*");
+        }
     }
 }

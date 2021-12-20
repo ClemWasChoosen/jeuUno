@@ -32,19 +32,46 @@ public abstract class Joueur {
                 '}';
     }
 
-    public void jouer(char coupAJouer){
+    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche){
+        String carteNumberStr;
+        if (coupAJouer.length() > 1)
+            carteNumberStr = coupAJouer.substring(0, 2);
+        else
+            carteNumberStr = coupAJouer.substring(0, 1);
+
+        if (coupAJouer.charAt(0) == 'p'){
+            this.paquetJoueur.ajouter(pioche.piocher());
+        }else if(Character.isDigit(carteNumberStr.charAt(0)) /*&& Character.isDigit(carteNumberStr.charAt(1))*/){
+            if (carteNumberStr.length() > 1 && !Character.isDigit(carteNumberStr.charAt(1)))
+                carteNumberStr = coupAJouer.substring(0,1);
+
+            int carteToGet = Integer.parseInt(carteNumberStr);
+            //System.out.println("Carte a jouer " + carteNumberStr);
+            if (carteToGet >= 0 && carteToGet < this.paquetJoueur.getNombreDeCartes()){
+                talon.ajouter(this.paquetJoueur.getCarte(carteToGet));
+            }
+        }
+
+
 
     }
 
-    public Carte jouer(Carte talon){
+    public void jouer(PaquetDeCartes talon, PaquetDeCartes pioche){
+        Carte cartEnlevee = null;
         if (this.paquetJoueur.getNombreDeCartes() > 0){
             for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
-                if (talon.peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
-                    return this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));
+                if (talon.getSommet().peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
+                    cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));
+                    break;
                 }
             }
         }
-        return null;
+
+        if (cartEnlevee != null){
+            talon.ajouter(cartEnlevee);
+        }else if(this.paquetJoueur.getNombreDeCartes() > 0){
+            this.paquetJoueur.ajouter(pioche.piocher());
+        }
     }
 
     public abstract boolean joueurEstHumain();
