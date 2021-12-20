@@ -57,7 +57,7 @@ public class DialogueUno {
     }
 
     public String lireCoup(){
-        System.out.println("\n(p) : piocher | (j) jouer une carte");
+        System.out.println("\n(p) : piocher | (j) jouer une carte | (n) passer le tour");
                 //(1 - " + this.u1.getNbCarteEnMainJoueur() +
         System.out.print("Quel coup voulez vous jouer : ");
         sc = new Scanner(System.in);
@@ -65,9 +65,9 @@ public class DialogueUno {
 
         do {
             coupAJouer = sc.nextLine();
-            if (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j')
+            if (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n')
                 System.out.println("Coup non jouable entrez en un nouveau");
-        }while (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j');
+        }while (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n');
 
         if (coupAJouer.charAt(0) == 'j'){
             do {
@@ -85,6 +85,7 @@ public class DialogueUno {
         System.out.println("========");
 
         System.out.println("Au tour du joueur " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + " de jouer...");
+        System.out.println("Il lui reste " + this.u1.getPaquetJoueurActuel().getNombreDeCartes() + " carte(s)");
 
         if (this.u1.estUnJoueurHumain()){
             afficherPaquetJoueur();

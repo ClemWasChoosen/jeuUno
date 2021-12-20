@@ -108,14 +108,14 @@ public class Uno {
     }
 
     public void jouer(String coupAjouer){
-        if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0) {
+        if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
             /*this.talon.ajouter(this.tabJoueur[joueurActuel].jouer(this.talon.getSommet()));
             if (this.talon.getCarte(talon.getNombreDeCartes() - 1) == null) {
                 this.talon.enlever(talon.getCarte(talon.getNombreDeCartes() - 1));
             }*/
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche);
-            System.out.println("test " + this.talon);
+            //System.out.println("test " + this.talon);
         }else{
             this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }
@@ -129,13 +129,15 @@ public class Uno {
     }
 
     public String toStringPaquet(){
-        String res = "# ";
-        for (Carte c :
-                this.tabJoueur[this.joueurActuel].getPaquetJoueur()) {
-            res = res + " / " + c;
+        String res = "";
+
+        for (int i = 0; i < getPaquetJoueurActuel().getNombreDeCartes(); i++){
+            res = res + " (" + (i+1) + ")e carte: " + this.getPaquetJoueurActuel().getCarte(i);
+            if ((i + 1)%3 == 0)
+                res = res + "\n";
         }
 
-        res = res + " #";
+        res = res + "#";
 
         return res;
     }
@@ -143,6 +145,10 @@ public class Uno {
     /**
      * GETTER & SETTER
      */
+
+    public PaquetDeCartes getPaquetJoueurActuel(){
+        return this.tabJoueur[this.joueurActuel].getPaquetJoueur();
+    }
 
     public int getSens() {
         return sens;
