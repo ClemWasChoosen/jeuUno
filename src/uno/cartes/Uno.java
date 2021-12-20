@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import uno.dialogues.DialogueUno;
+import uno.errorHandler.CoupIncorrect;
 import uno.errorHandler.ErreurUno;
 import uno.joueurs.Bots;
 import uno.joueurs.Humain;
@@ -86,8 +87,6 @@ public class Uno {
             }
         }
 
-        //this.tabJoueur[0].getPaquetJoueur().ajouter(this.pioche.piocher());
-        //System.out.println(this.pioche.piocher());
     }
 
     public void choisirQuiJoue(){
@@ -109,13 +108,13 @@ public class Uno {
 
     public void jouer(String coupAjouer){
         if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
-            /*this.talon.ajouter(this.tabJoueur[joueurActuel].jouer(this.talon.getSommet()));
-            if (this.talon.getCarte(talon.getNombreDeCartes() - 1) == null) {
-                this.talon.enlever(talon.getCarte(talon.getNombreDeCartes() - 1));
-            }*/
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
-                this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche);
-            //System.out.println("test " + this.talon);
+                try{
+                    this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche);
+                }catch(CoupIncorrect c){
+                    c.printStackTrace();
+                    this.diagUno.reagir();
+                }
         }else{
             this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }

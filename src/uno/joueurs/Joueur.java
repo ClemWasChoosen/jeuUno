@@ -33,11 +33,11 @@ public abstract class Joueur {
                 '}';
     }
 
-    public abstract Carte carteChoisie(int coup) throws CoupIncorrect;
+    public abstract Carte carteChoisie(String coupAJouer, Carte talon) throws CoupIncorrect;
 
-    public void jouer(PaquetDeCartes talon, PaquetDeCartes pioche){};
+    public abstract void jouer(PaquetDeCartes talon, PaquetDeCartes pioche);
 
-    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche){};
+    public abstract void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche) throws CoupIncorrect;
 
     public abstract boolean joueurEstHumain();
 }

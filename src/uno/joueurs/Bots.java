@@ -2,11 +2,18 @@ package uno.joueurs;
 
 import uno.cartes.Carte;
 import uno.cartes.PaquetDeCartes;
+import uno.errorHandler.CoupIncorrect;
 
 public class Bots extends Joueur{
     public Bots(String nom) {
         super(nom);
     }
+
+    @Override
+    public Carte carteChoisie(String coupAJouer, Carte talon) throws CoupIncorrect {
+        return null;
+    }
+
 
     public boolean joueurEstHumain() {
         return false;
@@ -32,5 +39,10 @@ public class Bots extends Joueur{
         }else if(this.paquetJoueur.getNombreDeCartes() > 0){
             this.paquetJoueur.ajouter(pioche.piocher());
         }
+    }
+
+    @Override
+    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche) throws CoupIncorrect {
+
     }
 }
