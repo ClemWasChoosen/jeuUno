@@ -40,4 +40,6 @@ public abstract class Joueur {
     public abstract void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche) throws CoupIncorrect;
 
     public abstract boolean joueurEstHumain();
+
+    public abstract Carte choisirCouleurCarte(Carte carteAChanger) throws CoupIncorrect;
 }

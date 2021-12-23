@@ -123,6 +123,11 @@ public class Uno {
         if (this.joueurActuel == this.nbJoueur)
             this.joueurActuel = 0;
 
+        if (this.pioche.getNombreDeCartes() <= 10){
+            for (int i = 0; i < this.talon.getNombreDeCartes() - 2; i++)
+                this.pioche.ajouter(this.talon.enlever(this.talon.getCarte(i)));
+        }
+
 
         this.diagUno.reagir();
     }

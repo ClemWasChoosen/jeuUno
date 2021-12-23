@@ -59,13 +59,19 @@ public class Humain extends Joueur{
             if (carteNumberStr.length() > 1 && !Character.isDigit(carteNumberStr.charAt(1)))
                 carteNumberStr = coupAJouer.substring(0, 1);
 
-            int carteToGet = Integer.parseInt(carteNumberStr);
+            int carteToGet = Integer.parseInt(carteNumberStr) - 1;
             //System.out.println("Carte a jouer " + carteNumberStr);
             if (carteToGet >= 0 && carteToGet < this.paquetJoueur.getNombreDeCartes()) {
                 if (talon.peutEtreRecouvertePar(this.paquetJoueur.getCarte(carteToGet)))
                     if (this.paquetJoueur.getCarte(carteToGet).getCouleur() != null)
                         return this.paquetJoueur.getCarte(carteToGet);
                     else {
+                        try {
+                            return choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));
+                        }catch (CoupIncorrect c){
+                            c.printStackTrace();
+                            choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));;
+                        }
                         System.out.println("Il faut créer ici");
                     }
 
@@ -75,6 +81,11 @@ public class Humain extends Joueur{
         }else
             throw new CoupIncorrect("La valeur entrée n'est pas un nombre");
     return null;
+    }
+
+    public Carte choisirCouleurCarte(Carte carteAChanger) throws CoupIncorrect{
+
+        return null;
     }
 
 }

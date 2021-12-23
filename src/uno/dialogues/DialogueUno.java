@@ -1,6 +1,7 @@
 package uno.dialogues;
 
 import uno.cartes.Carte;
+import uno.cartes.Couleur;
 import uno.cartes.PaquetDeCartes;
 import uno.cartes.Uno;
 import uno.errorHandler.ErreurUno;
@@ -33,7 +34,7 @@ public class DialogueUno {
                     sc.next();
                 }
                 nb = sc.nextInt();
-            } while (nb <= 1);
+            } while (nb <= 1 || nb > 10);
         return nb;
     }
 
@@ -56,6 +57,40 @@ public class DialogueUno {
         }
     }
 
+    public Couleur lireCouleur(){
+
+
+        sc = new Scanner(System.in);
+        int couleurChoisie = 1;
+        Couleur coul = Couleur.ROUGE;
+        do {
+            System.out.println("Choisissez une couleur :");
+            System.out.println(" (1) Jaune | (2) Vert | (3) Bleu | (4) Rouge");
+            while (!sc.hasNextInt()) {
+                System.out.println("Valeur entrée incorrecte");
+                sc.next();
+            }
+            couleurChoisie = sc.nextInt();
+        } while (couleurChoisie < 1 || couleurChoisie > 4);
+
+        switch (couleurChoisie){
+            case 1:
+                coul = Couleur.JAUNE;
+                break;
+            case 2:
+                coul = Couleur.VERT;
+                break;
+            case 3:
+                coul = Couleur.BLEU;
+                break;
+            case 4:
+                coul = Couleur.ROUGE;
+                break;
+        }
+
+        return coul;
+    }
+
     public String lireCoup(){
         System.out.println("\n(p) : piocher | (j) jouer une carte | (n) passer le tour");
                 //(1 - " + this.u1.getNbCarteEnMainJoueur() +
@@ -71,9 +106,9 @@ public class DialogueUno {
 
         if (coupAJouer.charAt(0) == 'j'){
             do {
-                System.out.println("Quelle carte voulez-vous jouer ? (0 - " + (this.u1.getNbCarteEnMainJoueur() - 1) + ")");
+                System.out.println("Quelle carte voulez-vous jouer ? (1 - " + (this.u1.getNbCarteEnMainJoueur()) + ")");
                 coupAJouer = sc.nextLine();
-            }while (!Character.isDigit(coupAJouer.charAt(0)) && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) < this.u1.getNbCarteEnMainJoueur()  - 1);
+            }while (!Character.isDigit(coupAJouer.charAt(0)) && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) < this.u1.getNbCarteEnMainJoueur() && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) > 0);
         }
 
         return coupAJouer;
@@ -82,6 +117,7 @@ public class DialogueUno {
     public void reagir(){
         System.out.println("========\nCarte sur le talon :");
         System.out.println(" -" + u1.getTalon().getSommet());
+        System.out.println("Nombre de carte dans la pioche [" + this.u1.getPioche().getNombreDeCartes() + "]");
         System.out.println("========");
 
         System.out.println("Au tour du joueur " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + " de jouer...");
