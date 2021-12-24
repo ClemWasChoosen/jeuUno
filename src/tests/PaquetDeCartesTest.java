@@ -30,8 +30,9 @@ class PaquetDeCartesTest {
     @Test
     @DisplayName("Test de la fonction lire")
     void lireTest(){
+        Uno uno = new Uno();
         try{
-            fabCarte.getPaquetComplet().lire("PaquetDeCarteTest.txt");
+            fabCarte.getPaquetComplet(uno).lire("PaquetDeCarteTest.txt");
             System.out.println(fabCarte);
         }catch (ErreurFichier e){
             e.printStackTrace();

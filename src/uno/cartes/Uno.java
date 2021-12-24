@@ -76,7 +76,7 @@ public class Uno {
         if (this.tabJoueur == null)
             throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
 
-        this.pioche = FabriqueCartes.getInstance().getPaquetComplet();
+        this.pioche = FabriqueCartes.getInstance().getPaquetComplet(this);
         this.pioche.melanger();
         this.talon = new PaquetDeCartes();
         this.talon.ajouter(this.pioche.piocher());
@@ -110,7 +110,7 @@ public class Uno {
         if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 try{
-                    this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche);
+                    this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche, this.diagUno);
                 }catch(CoupIncorrect c){
                     c.printStackTrace();
                     this.diagUno.reagir();

@@ -122,6 +122,8 @@ public abstract class Carte {
      */
     public abstract String getName();
 
+    public void appliquerEffet(){}
+
     /**
      * Retourne un String pour afficher les attributs de la carte
      * @return String du contenu 

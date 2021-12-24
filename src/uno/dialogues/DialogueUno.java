@@ -16,6 +16,9 @@ public class DialogueUno {
     Scanner sc;
 
     public DialogueUno(Uno unoPara) throws ErreurUno {
+        if (unoPara == null){
+            throw new ErreurUno("Uno est null, dialogue uno ne peut être initialisé");
+        }
         this.u1 = unoPara;
         this.u1.setDialogue(this);
         nbJoueur = this.lireNombreJoueur();
@@ -59,10 +62,9 @@ public class DialogueUno {
 
     public Couleur lireCouleur(){
 
-
         sc = new Scanner(System.in);
         int couleurChoisie = 1;
-        Couleur coul = Couleur.ROUGE;
+        Couleur coul;
         do {
             System.out.println("Choisissez une couleur :");
             System.out.println(" (1) Jaune | (2) Vert | (3) Bleu | (4) Rouge");
@@ -83,9 +85,8 @@ public class DialogueUno {
             case 3:
                 coul = Couleur.BLEU;
                 break;
-            case 4:
+            default:
                 coul = Couleur.ROUGE;
-                break;
         }
 
         return coul;

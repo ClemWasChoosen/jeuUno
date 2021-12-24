@@ -2,6 +2,7 @@ package uno.joueurs;
 
 import uno.cartes.Carte;
 import uno.cartes.PaquetDeCartes;
+import uno.dialogues.DialogueUno;
 import uno.errorHandler.CoupIncorrect;
 
 public class Bots extends Joueur{
@@ -19,30 +20,13 @@ public class Bots extends Joueur{
         return false;
     }
 
-    public void jouer(PaquetDeCartes talon, PaquetDeCartes pioche){
-        Carte cartEnlevee = null;
-        int rand = (int)(Math.random() * this.paquetJoueur.getNombreDeCartes());
-        if (this.paquetJoueur.getNombreDeCartes() > 0){
-            if (talon.getSommet().getCouleur() == null)
-                cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(rand));
+    @Override
+    public void choisirCouleurCarte(Carte carteAChanger, DialogueUno diag) throws CoupIncorrect {
 
-            for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
-                if (talon.getSommet().peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
-                    cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));
-                    break;
-                }
-            }
-        }
-
-        if (cartEnlevee != null){
-            talon.ajouter(cartEnlevee);
-        }else if(this.paquetJoueur.getNombreDeCartes() > 0){
-            this.paquetJoueur.ajouter(pioche.piocher());
-        }
     }
 
     @Override
-    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche) throws CoupIncorrect {
-
+    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect {
+        jouer(talon, pioche);
     }
 }

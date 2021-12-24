@@ -1,7 +1,9 @@
 package uno.joueurs;
 
 import uno.cartes.Carte;
+import uno.cartes.Couleur;
 import uno.cartes.PaquetDeCartes;
+import uno.dialogues.DialogueUno;
 import uno.errorHandler.CoupIncorrect;
 
 public class Humain extends Joueur{
@@ -20,7 +22,7 @@ public class Humain extends Joueur{
         return true;
     }
 
-    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche) throws CoupIncorrect{
+    public void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect{
         /*String carteNumberStr;
         if (coupAJouer.length() > 1)
             carteNumberStr = coupAJouer.substring(0, 2);
@@ -38,6 +40,11 @@ public class Humain extends Joueur{
             //if (carteToGet >= 0 && carteToGet < this.paquetJoueur.getNombreDeCartes()){
 
             Carte c = carteChoisie(coupAJouer, talon.getSommet());
+
+            if (c.getCouleur() == null){
+                choisirCouleurCarte(c, diag);
+            }
+
             talon.ajouter(c);
             this.paquetJoueur.enlever(c);
 
@@ -63,29 +70,28 @@ public class Humain extends Joueur{
             //System.out.println("Carte a jouer " + carteNumberStr);
             if (carteToGet >= 0 && carteToGet < this.paquetJoueur.getNombreDeCartes()) {
                 if (talon.peutEtreRecouvertePar(this.paquetJoueur.getCarte(carteToGet)))
-                    if (this.paquetJoueur.getCarte(carteToGet).getCouleur() != null)
+                    //if (this.paquetJoueur.getCarte(carteToGet).getCouleur() != null)
                         return this.paquetJoueur.getCarte(carteToGet);
-                    else {
-                        try {
-                            return choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));
-                        }catch (CoupIncorrect c){
-                            c.printStackTrace();
-                            choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));;
-                        }
-                        System.out.println("Il faut créer ici");
-                    }
+                    //else {
+                     //   try {
+                     //       return choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));
+                      //  }catch (CoupIncorrect c){
+                       //     c.printStackTrace();
+                       //     choisirCouleurCarte(this.paquetJoueur.getCarte(carteToGet));
+                       // }
+                       // System.out.println("Il faut créer ici");
+                    //}
 
                 else throw new CoupIncorrect("La carte choisie ne peut pas être posée sur le talon");
                 //talon.ajouter(this.paquetJoueur.getCarte(carteToGet));
             }else throw new CoupIncorrect("Valeur entrée en dehors du nombre possible de carte du paquet");
         }else
             throw new CoupIncorrect("La valeur entrée n'est pas un nombre");
-    return null;
+    //return null;
     }
 
-    public Carte choisirCouleurCarte(Carte carteAChanger) throws CoupIncorrect{
-
-        return null;
+    public void choisirCouleurCarte(Carte carteAChanger, DialogueUno diag){
+        carteAChanger.setCouleur(diag.lireCouleur());
     }
 
 }
