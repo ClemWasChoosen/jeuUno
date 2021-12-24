@@ -119,9 +119,16 @@ public class Uno {
             this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }
 
-        this.joueurActuel++;
-        if (this.joueurActuel == this.nbJoueur)
-            this.joueurActuel = 0;
+        if (this.sens == 1){
+            this.joueurActuel++;
+            if (this.joueurActuel == this.nbJoueur)
+                this.joueurActuel = 0;
+        }else{
+            this.joueurActuel--;
+            if (this.joueurActuel < 0)
+                this.joueurActuel = this.nbJoueur - 1;
+        }
+
 
         if (this.pioche.getNombreDeCartes() <= 10){
             for (int i = 0; i < this.talon.getNombreDeCartes() - 2; i++)

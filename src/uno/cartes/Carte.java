@@ -2,8 +2,8 @@ package uno.cartes;
 
 public abstract class Carte {
 
-    private Uno uno;
-    private Couleur couleur;
+    protected Uno uno;
+    protected Couleur couleur;
 
     /**
      * Contructeur de carte

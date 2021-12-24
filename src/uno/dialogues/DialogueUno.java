@@ -101,9 +101,9 @@ public class DialogueUno {
 
         do {
             coupAJouer = sc.nextLine();
-            if (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n')
+            if (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n')
                 System.out.println("Coup non jouable entrez en un nouveau");
-        }while (coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n');
+        }while (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n');
 
         if (coupAJouer.charAt(0) == 'j'){
             do {

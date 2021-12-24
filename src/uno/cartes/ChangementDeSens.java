@@ -49,4 +49,13 @@ public class ChangementDeSens extends Carte{
     public String getName(){
         return "ChangementDeSens";
     }
+
+    public void appliquerEffet(){
+        if (this.uno != null){
+            if (this.uno.getSens() != 0)
+                this.uno.setSens(1);
+            else
+                this.uno.setSens(0);
+        }
+    }
 }
