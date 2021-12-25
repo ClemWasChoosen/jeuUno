@@ -1,9 +1,6 @@
 package uno.joueurs;
 
-import uno.cartes.Carte;
-import uno.cartes.FabriqueCartes;
-import uno.cartes.PaquetDeCartes;
-import uno.cartes.Uno;
+import uno.cartes.*;
 import uno.dialogues.DialogueUno;
 import uno.errorHandler.CoupIncorrect;
 
@@ -38,10 +35,10 @@ public abstract class Joueur {
 
     public void jouer(PaquetDeCartes talon, PaquetDeCartes pioche){
         Carte cartEnlevee = null;
-        int rand = (int)(Math.random() * this.paquetJoueur.getNombreDeCartes());
+        //int rand = (int)(Math.random() * this.paquetJoueur.getNombreDeCartes());
         if (this.paquetJoueur.getNombreDeCartes() > 0){
-            if (talon.getSommet().getCouleur() == null)
-                cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(rand));
+            /*if (talon.getSommet().getCouleur() == null)
+                cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(rand));*/
 
             for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
                 if (talon.getSommet().peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
@@ -52,10 +49,33 @@ public abstract class Joueur {
         }
 
         if (cartEnlevee != null){
+            if (cartEnlevee.getCouleur() == null)
+                cartEnlevee.setCouleur(getRandColor());
             talon.ajouter(cartEnlevee);
         }else if(this.paquetJoueur.getNombreDeCartes() > 0){
             this.paquetJoueur.ajouter(pioche.piocher());
         }
+    }
+
+    public Couleur getRandColor(){
+        int rand = (int)(Math.random() * 4);
+        Couleur coul;
+        switch (rand){
+            case 0:
+                coul = Couleur.ROUGE;
+                break;
+            case 1:
+                coul = Couleur.BLEU;
+                break;
+            case 2:
+                coul = Couleur.VERT;
+                break;
+            default:
+                coul = Couleur.JAUNE;
+                break;
+        }
+
+        return coul;
     }
 
     public abstract void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect;

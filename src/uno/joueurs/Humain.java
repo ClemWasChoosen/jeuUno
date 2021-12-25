@@ -45,6 +45,7 @@ public class Humain extends Joueur{
                 choisirCouleurCarte(c, diag);
             }
 
+            c.appliquerEffet();
             talon.ajouter(c);
             this.paquetJoueur.enlever(c);
 

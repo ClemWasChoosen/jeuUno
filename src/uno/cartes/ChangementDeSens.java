@@ -51,11 +51,13 @@ public class ChangementDeSens extends Carte{
     }
 
     public void appliquerEffet(){
+        //System.out.println("Sens av : " + uno.getSens());
         if (this.uno != null){
             if (this.uno.getSens() != 0)
-                this.uno.setSens(1);
-            else
                 this.uno.setSens(0);
+            else
+                this.uno.setSens(1);
         }
+        //System.out.println("Sens ap : " + uno.getSens());
     }
 }
