@@ -43,6 +43,7 @@ public abstract class Joueur {
             for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
                 if (talon.getSommet().peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
                     cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));
+                    cartEnlevee.appliquerEffet();
                     break;
                 }
             }

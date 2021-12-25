@@ -52,4 +52,18 @@ public class PasseTonTour extends Carte{
     public String getName(){
         return "PasseTonTour";
     }
+
+    public void appliquerEffet(){
+
+        if (this.uno.getSens() == 1){
+            this.uno.setJoueurActuel(this.uno.getJoueurActuel() + 1);
+            if (this.uno.getJoueurActuel() == this.uno.getNbJoueur())
+                this.uno.setJoueurActuel(0);
+        }else{
+            this.uno.setJoueurActuel(this.uno.getJoueurActuel() - 1);
+            if (this.uno.getJoueurActuel() < 0)
+                this.uno.setJoueurActuel(this.uno.getNbJoueur() - 1);
+        }
+        System.out.println("Joueur actuel : " + this.uno.getJoueurActuel());
+    }
 }

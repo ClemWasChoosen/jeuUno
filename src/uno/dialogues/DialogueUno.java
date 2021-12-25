@@ -108,8 +108,15 @@ public class DialogueUno {
         if (coupAJouer.charAt(0) == 'j'){
             do {
                 System.out.println("Quelle carte voulez-vous jouer ? (1 - " + (this.u1.getNbCarteEnMainJoueur()) + ")");
-                coupAJouer = sc.nextLine();
-            }while (!Character.isDigit(coupAJouer.charAt(0)) && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) < this.u1.getNbCarteEnMainJoueur() && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) > 0);
+                //coupAJouer = sc.nextLine();
+                //System.out.println("Choisissez une couleur :");
+                //System.out.println(" (1) Jaune | (2) Vert | (3) Bleu | (4) Rouge");
+                while (!sc.hasNextInt()) {
+                    System.out.println("Valeur entrée incorrecte");
+                    sc.next();
+                }
+                coupAJouer = sc.nextInt() + "";
+            }while (coupAJouer.charAt(0) == '-' && !Character.isDigit(coupAJouer.charAt(0)) && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) < this.u1.getNbCarteEnMainJoueur() && Integer.parseInt(String.valueOf(coupAJouer.charAt(0))) > 0);
         }
 
         return coupAJouer;

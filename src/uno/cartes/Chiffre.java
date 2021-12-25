@@ -34,7 +34,7 @@ public class Chiffre extends Carte {
 
     @Override
     public boolean peutEtrePoseeSur(Joker c) {
-        return true;
+        return this.getCouleur() == c.getCouleur();
     }
 
     @Override

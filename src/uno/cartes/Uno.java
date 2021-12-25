@@ -107,6 +107,7 @@ public class Uno {
     }
 
     public void jouer(String coupAjouer){
+        System.out.println("Joueur actuel av tout : " + getJoueurActuel());
         if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 try{
@@ -128,6 +129,8 @@ public class Uno {
             if (this.joueurActuel < 0)
                 this.joueurActuel = this.nbJoueur - 1;
         }
+
+        System.out.println("Joueur actuel : " + getJoueurActuel());
 
 
         if (this.pioche.getNombreDeCartes() <= 10){
