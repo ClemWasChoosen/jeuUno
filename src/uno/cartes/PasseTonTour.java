@@ -64,6 +64,5 @@ public class PasseTonTour extends Carte{
             if (this.uno.getJoueurActuel() < 0)
                 this.uno.setJoueurActuel(this.uno.getNbJoueur() - 1);
         }
-        System.out.println("Joueur actuel : " + this.uno.getJoueurActuel());
     }
 }
