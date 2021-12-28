@@ -66,12 +66,12 @@ public class Plus4 extends Carte{
 
         }else{
             joueurQuiRecoit--;
-            if (joueurQuiRecoit == 0)
+            if (joueurQuiRecoit < 0)
                 joueurQuiRecoit = this.uno.getNbJoueur() - 1;
             if (this.uno.getTabJoueur()[joueurQuiRecoit].getPaquetJoueur().getNombreDeCartes() < 0){
                 do {
                     joueurQuiRecoit--;
-                    if (joueurQuiRecoit == 0)
+                    if (joueurQuiRecoit < 0)
                         joueurQuiRecoit = this.uno.getNbJoueur() - 1;
                 } while (this.uno.getTabJoueur()[joueurQuiRecoit].getPaquetJoueur().getNombreDeCartes() < 0);
             }

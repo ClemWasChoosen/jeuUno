@@ -15,7 +15,7 @@ public class Uno {
     private int sens;
     private int joueurActuel;
     private int nbJoueur;
-    //private boolean etatJeu;
+    private boolean etatJeu;
     private Joueur[] tabJoueur;
     private PaquetDeCartes talon;
     private PaquetDeCartes pioche;
@@ -44,6 +44,7 @@ public class Uno {
 
         }while (this.nbJoueur < 2 || this.nbJoueur > 7);*/
 
+        this.etatJeu = false;
         creerLesJoueur(nbJoueurL, nomJoueur);
         distribuerCarte();
         choisirQuiJoue();
@@ -107,6 +108,7 @@ public class Uno {
     }
 
     public void jouer(String coupAjouer){
+
         if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 try{
@@ -119,7 +121,14 @@ public class Uno {
             this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }
 
-        if (this.sens == 1){
+        if (getPaquetJoueurActuel().getNombreDeCartes() <= 0){
+            this.etatJeu = true;
+            //this.diagUno.reagir();
+        }
+
+        if (this.etatJeu){
+
+        }else if (this.sens == 1){
             this.joueurActuel++;
             if (this.joueurActuel == this.nbJoueur)
                 this.joueurActuel = 0;
@@ -134,6 +143,10 @@ public class Uno {
             for (int i = 0; i < this.talon.getNombreDeCartes() - 2; i++)
                 this.pioche.ajouter(this.talon.enlever(this.talon.getCarte(i)));
         }
+
+//        if (getPaquetJoueurActuel().getNombreDeCartes() <= 0){
+//            this.etatJeu = true;
+//        }
 
         this.diagUno.reagir();
     }
@@ -206,6 +219,10 @@ public class Uno {
 
     public void setPioche(PaquetDeCartes pioche) {
         this.pioche = pioche;
+    }
+
+    public boolean getEtatJeu(){
+        return this.etatJeu;
     }
 
     @Override

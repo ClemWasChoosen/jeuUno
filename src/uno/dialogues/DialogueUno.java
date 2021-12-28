@@ -123,6 +123,7 @@ public class DialogueUno {
     }
 
     public void reagir(){
+        if (!this.u1.getEtatJeu()){
         System.out.println("========\nCarte sur le talon :");
         System.out.println(" -" + u1.getTalon().getSommet());
         System.out.println("Nombre de carte dans la pioche [" + this.u1.getPioche().getNombreDeCartes() + "]");
@@ -131,12 +132,20 @@ public class DialogueUno {
         System.out.println("Au tour du joueur " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + " de jouer...");
         System.out.println("Il lui reste " + this.u1.getPaquetJoueurActuel().getNombreDeCartes() + " carte(s)");
 
-        if (this.u1.estUnJoueurHumain()){
-            afficherPaquetJoueur();
-            u1.jouer(lireCoup());
+            if (this.u1.estUnJoueurHumain()){
+                afficherPaquetJoueur();
+                u1.jouer(lireCoup());
+            }else{
+                //afficherPaquetJoueur();
+                u1.jouer("*");
+            }
         }else{
-            //afficherPaquetJoueur();
-            u1.jouer("*");
+            System.out.println(" ==== !!!! ====");
+            int joueurGagnant = this.u1.getJoueurActuel();
+
+            System.out.println(this.u1.getTabJoueur()[joueurGagnant].getNom() + " a gagné la partie, il lui reste 0 carte");
+
+            System.out.println(" ==== !!!! ====");
         }
     }
 }

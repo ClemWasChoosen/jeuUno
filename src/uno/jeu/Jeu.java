@@ -13,6 +13,6 @@ public class Jeu {
             e.printStackTrace();
         }
 
-        System.out.println(u1);
+        //System.out.println(u1);
     }
 }
