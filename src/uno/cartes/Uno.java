@@ -1,8 +1,6 @@
 package uno.cartes;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import uno.dialogues.DialogueUno;
 import uno.errorHandler.CoupIncorrect;
@@ -11,6 +9,9 @@ import uno.joueurs.Bots;
 import uno.joueurs.Humain;
 import uno.joueurs.Joueur;
 
+/**
+ * Classe comprenant le jeu, tous les paramètres propres au bon déroulement d'un jeu de Uno y est
+ */
 public class Uno {
     private int sens;
     private int joueurActuel;
@@ -21,18 +22,34 @@ public class Uno {
     private PaquetDeCartes pioche;
     private DialogueUno diagUno;
 
+    /**
+     * Constructeur vide de la classe Uno (utilisez initialiser() pour créer un nouveau jeu)
+     */
     public Uno() {
     }
 
+    /**
+     * Permet de créer toutes les instances nécessaire au jeu
+     *      créer les joueurs, distribue les cartes, choisit le joueur qui joue
+     *      et enfin lance le jeu
+     * @param nbJoueurL nombre de joueur jouant au jeu
+     * @param nomJoueur nom du joueur principal (seul joueur non bot)
+     * @throws ErreurUno toutes les erreurs liées au développement d'un jeu de Uno
+     */
     public void initialiser(int nbJoueurL, String nomJoueur) throws ErreurUno{
         this.etatJeu = false;
-        creerLesJoueur(nbJoueurL, nomJoueur);
+        creerLesJoueurs(nbJoueurL, nomJoueur);
         distribuerCarte();
         choisirQuiJoue();
         this.diagUno.reagir();
     }
 
-    public void creerLesJoueur(int nbJoueurL, String nomJoueur){
+    /**
+     * Ajoute les joueurs au jeu, leur donne un nom, assigne des paquets à chacun
+     * @param nbJoueurL nombre de joueurs total dans le jeu (avec le joueur humain)
+     * @param nomJoueur nom du joueur humain
+     */
+    public void creerLesJoueurs(int nbJoueurL, String nomJoueur){
         this.nbJoueur = nbJoueurL;
         this.tabJoueur = new Joueur[nbJoueurL];
 
@@ -51,6 +68,10 @@ public class Uno {
         }
     }
 
+    /**
+     * Créer la pioche et la mélange, créer le talon avec une carte de la pioche, Distribue les cartes au joueur, aux bots
+     * @throws ErreurUno
+     */
     public void distribuerCarte() throws ErreurUno{
         if (this.tabJoueur == null)
             throw new ErreurUno("Impossible de distribuer les uno.cartes, le tableau contenant les uno.joueurs est à null");
@@ -67,25 +88,44 @@ public class Uno {
         }
     }
 
+    /**
+     * Choisi le joueur actuel aléatoirement et fixe le sens à 1 (sens horaire = 1, sens antihoraire = 0)
+     */
     public void choisirQuiJoue(){
-        this.joueurActuel = (int)(Math.random() * 4);
+        this.joueurActuel = (int)(Math.random() * this.nbJoueur);
         this.sens = 1;
     }
 
+    /**
+     * fixe le dialogue en paramètre
+     * @param diagPara dialogue qui va remplacer celui en attrivut
+     */
     public void setDialogue(DialogueUno diagPara){
+        assert(diagPara != null):"Le paramètre est null, impossible de l'ajouter à l'attribut de Uno";
         this.diagUno = diagPara;
     }
 
+    /**
+     * @return le nombre de carte qu'a le joueur dans sa main
+     */
     public int getNbCarteEnMainJoueur(){
         return this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes();
     }
 
+    /**
+     * @return vrai si le joueur est humain false sinon
+     */
     public boolean estUnJoueurHumain(){
         return this.tabJoueur[this.joueurActuel].joueurEstHumain();
     }
 
+    /**
+     * Permet de jouer une carte présente dans le paquet d'un joueur, cette fonction fait appel aux fonctions dans la classe Joueur
+     * On passe au joueur suivant à la fin de la fonction puis on appelle reagir() de la classe DialogueUno
+     * @param coupAjouer contient le coup à jouer, si le premier caractère est "*", on joue automatiquement.
+     */
     public void jouer(String coupAjouer){
-        if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
+        if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0) {
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 try{
                     this.tabJoueur[0].jouer(coupAjouer, this.talon, this.pioche, this.diagUno);
@@ -119,6 +159,9 @@ public class Uno {
         this.diagUno.reagir();
     }
 
+    /**
+     * @return le paquet du joueur actuel pour l'afficher à l'écran dans DialogueUno
+     */
     public String toStringPaquet(){
         String res = "";
 
@@ -131,62 +174,90 @@ public class Uno {
         return res;
     }
 
-    /**
+    /*
      * GETTER & SETTER
      */
 
+    /**
+     * @return paquet du joueur actuel
+     */
     public PaquetDeCartes getPaquetJoueurActuel(){
         return this.tabJoueur[this.joueurActuel].getPaquetJoueur();
     }
 
+    /**
+     * @return le sens actuel du jeu
+     */
     public int getSens() {
         return sens;
     }
 
+    /**
+     * @param sens paramètre qui fixe le sens du jeu
+     */
     public void setSens(int sens) {
         this.sens = sens;
     }
 
+    /**
+     * @return le joueur actuel
+     */
     public int getJoueurActuel() {
         return joueurActuel;
     }
 
+    /**
+     * @param joueurActuel paramètre qui fixe le joueur actuel
+     */
     public void setJoueurActuel(int joueurActuel) {
         this.joueurActuel = joueurActuel;
     }
 
+    /**
+     * @return le nombre de joueurs dans le jeu
+     */
     public int getNbJoueur() {
         return nbJoueur;
     }
 
-    public void setNbJoueur(int nbJoueur) {
-        this.nbJoueur = nbJoueur;
-    }
-
+    /**
+     * @return le tableau contenant tous les joueurs
+     */
     public Joueur[] getTabJoueur() {
         return tabJoueur;
     }
 
-    public void setTabJoueur(Joueur[] tabJoueur) {
-        this.tabJoueur = tabJoueur;
-    }
-
+    /**
+     * @return le talon du jeu de Uno
+     */
     public PaquetDeCartes getTalon() {
         return talon;
     }
 
+    /**
+     * @param talon paramètre qui fixe le talon du jeu de Uno
+     */
     public void setTalon(PaquetDeCartes talon) {
         this.talon = talon;
     }
 
+    /**
+     * @return la pioche du jeu de Uno
+     */
     public PaquetDeCartes getPioche() {
         return pioche;
     }
 
+    /**
+     * @param pioche paramètre qui fixe la pioche du jeu de Uno
+     */
     public void setPioche(PaquetDeCartes pioche) {
         this.pioche = pioche;
     }
 
+    /**
+     * @return l'état actuel du jeu (false si le jeu tourne, true si il y a un gagnant)
+     */
     public boolean getEtatJeu(){
         return this.etatJeu;
     }

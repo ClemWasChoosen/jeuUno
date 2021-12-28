@@ -1,9 +1,22 @@
 package uno.cartes;
 
+/**
+ * Un Joker est une carte du jeu de Uno spéciale. Elle permet de poser une carte peu importe la carte sur le talon
+ * et elle permet de choisir la couleur qui va être joué
+ */
 public class Joker extends Carte {
+    /**
+     * Constructeur de Joker
+     * @param u Uno, jeu actuel
+     * @param c Couleur à donner à la carte
+     */
     public Joker(Uno u, Couleur c){
         super(u, c);
     }
+
+    /**
+     * @return La valeur de la carte Joker (50)
+     */
     @Override
     public int getValeur() {
         return 50;
@@ -44,6 +57,9 @@ public class Joker extends Carte {
         return true;
     }
 
+    /**
+     * @return le nom de la Carte ici: "Joker"
+     */
     @Override
     public String getName(){
         return "Joker";

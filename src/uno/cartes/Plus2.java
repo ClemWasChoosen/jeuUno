@@ -1,11 +1,22 @@
 package uno.cartes;
 
+/**
+ * Carte spéciale du jeu de Uno, permet d'ajouter 2 cartes au paquet du joueur suivant
+ */
 public class Plus2 extends Carte{
 
+    /**
+     * Constructeur de la classe Plus2
+     * @param u Uno, jeu actuel
+     * @param c couleur du Plus2
+     */
     public Plus2(Uno u, Couleur c){
         super(u, c);
     }
 
+    /**
+     * @return La valeur de la carte Plus2 (20)
+     */
     @Override
     public int getValeur() {
         return 20;
@@ -46,11 +57,18 @@ public class Plus2 extends Carte{
         return false;
     }
 
+    /**
+     * @return le nom de la Carte ici: "PlusDeux"
+     */
     @Override
     public String getName(){
         return "PlusDeux";
     }
 
+    /**
+     * Ajoute 2 cartes au joueur suivant (en fonction du sens actuel du jeu)
+     * Le joueur ayant reçu les 2 cartes peut tout de même jouer
+     */
     public void appliquerEffet(){
         int joueurQuiRecoit = this.uno.getJoueurActuel();
 

@@ -1,5 +1,8 @@
 package uno.cartes;
 
+/**
+ * Représentation abstraire des cartes du jeu pour les redéfinir.
+ */
 public abstract class Carte {
 
     protected Uno uno;
@@ -122,6 +125,10 @@ public abstract class Carte {
      */
     public abstract String getName();
 
+    /**
+     * Applique l'effet d'une carte sur le jeu
+     * Cette fonction ne fait rien dans le cas général, on la redéfinit dans les fonctions nécessaires
+     */
     public void appliquerEffet(){}
 
     /**

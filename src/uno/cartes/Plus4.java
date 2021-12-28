@@ -1,9 +1,22 @@
 package uno.cartes;
 
+/**
+ * Carte spéciale du jeu de Uno, permet d'ajouter 4 cartes au paquet du joueur suivant et de choisir la couleur
+ */
 public class Plus4 extends Carte{
+    /**
+     * Constructeur de Plus4
+     * @param u uno, jeu actuel
+     * @param c couleur de la carte (null lors de la déclaration,
+     *          la couleur est choisie par le joueur ensuite)
+     */
     public Plus4(Uno u, Couleur c){
         super(u, c);
     }
+
+    /**
+     * @return La valeur de la carte Plus4 (50)
+     */
     @Override
     public int getValeur() {
         return 50;
@@ -44,11 +57,18 @@ public class Plus4 extends Carte{
         return true;
     }
 
+    /**
+     * @return le nom de la Carte ici: "PlusQuatre"
+     */
     @Override
     public String getName(){
         return "PlusQuatre";
     }
 
+    /**
+     * Ajoute 4 cartes au joueur suivant (en fonction du sens actuel du jeu)
+     * Le joueur ayant reçu les 2 cartes peut tout de même jouer
+     */
     public void appliquerEffet(){
         int joueurQuiRecoit = this.uno.getJoueurActuel();
 

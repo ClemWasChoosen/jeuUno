@@ -15,7 +15,7 @@ class UnoTest {
 
     @Test
     void creerLesJoueur() {
-        uTest.creerLesJoueur(4, "JoueurTest");
+        uTest.creerLesJoueurs(4, "JoueurTest");
         assertEquals(uTest.getNbJoueur(), 4, "Erreur; Uno le nombre de joueur n'est pas juste");
         for (int i = 1; i < uTest.getNbJoueur(); i++){
             if (i == 1)

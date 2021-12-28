@@ -118,7 +118,6 @@ public class PaquetDeCartes implements Iterable<Carte>{
     }
     assert(rand != 0 || this.cartePaquet.size() != 0): "Le paquet de carte est vide, on ne peut pas piocher dedans (cl PaquetDeCartes / piocher)";
     return enlever(this.cartePaquet.get(rand));
-    //return paretourner;
   }
 
   public Carte getCarte(int index){
@@ -149,6 +148,12 @@ public class PaquetDeCartes implements Iterable<Carte>{
     }
   }
 
+  /**
+   * Permet de lire un jeu de uno dans un fichier
+   * @param nomDeFichier chemin courant du fichier à lire
+   * @return Le paquet lu
+   * @throws ErreurFichier différentes erreurs en rapport avec le fichier lu (impossible de le lire, impossible de lire une couleur, ...)
+   */
   public PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier{
     Uno u1 = new Uno();
     int nb = 0;
@@ -241,7 +246,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
       System.out.println("Erreur : dans la lecture des caractères");
       e.printStackTrace();
     }
-    return null;
+    return this;
   }
 
   /**
@@ -262,6 +267,9 @@ public class PaquetDeCartes implements Iterable<Carte>{
     return toReturn;
   }
 
+  /**
+   * @return l'itérateur du type Arraylist
+   */
   @Override
   public Iterator<Carte> iterator() {
     return this.cartePaquet.iterator();
