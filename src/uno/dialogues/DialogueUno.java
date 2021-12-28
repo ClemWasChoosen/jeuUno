@@ -93,24 +93,20 @@ public class DialogueUno {
     }
 
     public String lireCoup(){
-        System.out.println("\n(p) : piocher | (j) jouer une carte | (n) passer le tour");
-                //(1 - " + this.u1.getNbCarteEnMainJoueur() +
+        System.out.println("\n(p) : piocher | (j) jouer une carte");
         System.out.print("Quel coup voulez vous jouer : ");
         sc = new Scanner(System.in);
         String coupAJouer;
 
         do {
             coupAJouer = sc.nextLine();
-            if (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n')
+            if (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j')
                 System.out.println("Coup non jouable entrez en un nouveau");
-        }while (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j' && coupAJouer.charAt(0) != 'n');
+        }while (!coupAJouer.isEmpty() && coupAJouer.charAt(0) != 'p' && coupAJouer.charAt(0) != 'j');
 
         if (coupAJouer.charAt(0) == 'j'){
             do {
                 System.out.println("Quelle carte voulez-vous jouer ? (1 - " + (this.u1.getNbCarteEnMainJoueur()) + ")");
-                //coupAJouer = sc.nextLine();
-                //System.out.println("Choisissez une couleur :");
-                //System.out.println(" (1) Jaune | (2) Vert | (3) Bleu | (4) Rouge");
                 while (!sc.hasNextInt()) {
                     System.out.println("Valeur entrée incorrecte");
                     sc.next();

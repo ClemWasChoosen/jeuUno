@@ -25,25 +25,6 @@ public class Uno {
     }
 
     public void initialiser(int nbJoueurL, String nomJoueur) throws ErreurUno{
-        //Scanner sc = new Scanner(System.in);
-        //int limiteEntree = 0;
-        //System.out.println("Entrez le nombre de bots avec qui vous voulez jouer");
-        /*do {
-            try{
-                this.nbJoueur = sc.nextInt();
-            }catch(InputMismatchException i){
-                initialiser(nbJoueurL);
-            }
-
-            limiteEntree++;
-
-            if (limiteEntree >= 15)
-                throw new ErreurUno("Impossible de créer le jeu, le nombre de joueur est n'est pas compris entre 2 et 7");
-            if (this.nbJoueur < 2 || this.nbJoueur > 7)
-                System.out.println(this.nbJoueur + " n'est pas compris entre 1 et 7, réessayez");
-
-        }while (this.nbJoueur < 2 || this.nbJoueur > 7);*/
-
         this.etatJeu = false;
         creerLesJoueur(nbJoueurL, nomJoueur);
         distribuerCarte();
@@ -55,9 +36,6 @@ public class Uno {
         this.nbJoueur = nbJoueurL;
         this.tabJoueur = new Joueur[nbJoueurL];
 
-        //Scanner sc = new Scanner(System.in);
-        //String nomJoueur = sc.nextLine();
-        //System.out.println("Entrez votre nom de joueur");
         this.tabJoueur[0] = new Humain(nomJoueur);
         this.tabJoueur[0].getPaquetJoueur().clearPaquet();
 
@@ -87,7 +65,6 @@ public class Uno {
                 this.tabJoueur[i].getPaquetJoueur().ajouter(this.pioche.piocher());
             }
         }
-
     }
 
     public void choisirQuiJoue(){
@@ -108,7 +85,6 @@ public class Uno {
     }
 
     public void jouer(String coupAjouer){
-
         if (coupAjouer.charAt(0) != '*'  && this.joueurActuel == 0 && coupAjouer.charAt(0) != 'n') {
             if (this.tabJoueur[0].getPaquetJoueur().getNombreDeCartes() > 0)
                 try{
@@ -120,14 +96,11 @@ public class Uno {
         }else{
             this.tabJoueur[joueurActuel].jouer(this.talon, this.pioche);
         }
-
         if (getPaquetJoueurActuel().getNombreDeCartes() <= 0){
             this.etatJeu = true;
-            //this.diagUno.reagir();
         }
 
         if (this.etatJeu){
-
         }else if (this.sens == 1){
             this.joueurActuel++;
             if (this.joueurActuel == this.nbJoueur)
@@ -138,15 +111,10 @@ public class Uno {
                 this.joueurActuel = this.nbJoueur - 1;
         }
 
-
         if (this.pioche.getNombreDeCartes() <= 10){
             for (int i = 0; i < this.talon.getNombreDeCartes() - 2; i++)
                 this.pioche.ajouter(this.talon.enlever(this.talon.getCarte(i)));
         }
-
-//        if (getPaquetJoueurActuel().getNombreDeCartes() <= 0){
-//            this.etatJeu = true;
-//        }
 
         this.diagUno.reagir();
     }
@@ -159,9 +127,7 @@ public class Uno {
             if ((i + 1)%3 == 0)
                 res = res + "\n";
         }
-
         res = res + "#";
-
         return res;
     }
 

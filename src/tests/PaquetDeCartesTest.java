@@ -53,7 +53,7 @@ class PaquetDeCartesTest {
     @DisplayName("Test de la récupération d'une carte")
     void testGetCarte(){
         Uno u1 = new Uno();
-        Chiffre cTest = new Chiffre(u1, Couleur.VERT, 9);
+        //Chiffre cTest = new Chiffre(u1, Couleur.VERT, 9);
         assertEquals(this.fabCarte.getPaquet5Vert().getCarte(3).getValeur(), 9, "Erreur: getCarte ne retourne pas la carte attendue");
     }
 }

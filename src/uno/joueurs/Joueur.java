@@ -35,11 +35,7 @@ public abstract class Joueur {
 
     public void jouer(PaquetDeCartes talon, PaquetDeCartes pioche){
         Carte cartEnlevee = null;
-        //int rand = (int)(Math.random() * this.paquetJoueur.getNombreDeCartes());
         if (this.paquetJoueur.getNombreDeCartes() > 0){
-            /*if (talon.getSommet().getCouleur() == null)
-                cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(rand));*/
-
             for (int i = 0; i < this.paquetJoueur.getNombreDeCartes(); i++){
                 if (talon.getSommet().peutEtreRecouvertePar(this.paquetJoueur.getCarte(i))){
                     cartEnlevee = this.paquetJoueur.enlever(this.paquetJoueur.getCarte(i));

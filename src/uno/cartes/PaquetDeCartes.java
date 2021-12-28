@@ -116,7 +116,6 @@ public class PaquetDeCartes implements Iterable<Carte>{
     if (rand == this.getNombreDeCartes()) {
       rand--;
     }
-    // System.out.println(rand);
     assert(rand != 0 || this.cartePaquet.size() != 0): "Le paquet de carte est vide, on ne peut pas piocher dedans (cl PaquetDeCartes / piocher)";
     return enlever(this.cartePaquet.get(rand));
     //return paretourner;
@@ -152,11 +151,7 @@ public class PaquetDeCartes implements Iterable<Carte>{
 
   public PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier{
     Uno u1 = new Uno();
-    //String path = "testLoop.txt";
     int nb = 0;
-    //int[] tabOccur = new int[26];
-    //for (int j = 0; j < tabOccur.length; j++)
-    //  tabOccur[j] = 0;
     try{
       if (!new File(nomDeFichier).exists()){
         throw new ErreurFichier("Le fichier n'existe pas impossible de le lire");
@@ -206,8 +201,6 @@ public class PaquetDeCartes implements Iterable<Carte>{
                 throw new ErreurFichier("Impossible de récupérer la Couleur d'une carte du fichier");
             }
 
-            //System.out.println(s1);
-
             switch (s1){
               case "Chiffre":
                 this.cartePaquet.add(new Chiffre(u1, coultoAdd, valeur));
@@ -239,9 +232,6 @@ public class PaquetDeCartes implements Iterable<Carte>{
           }else{
             throw new ErreurFichier("Il n'y a pas de valeur (Number) dans le premier mot de la ligne ");
           }
-          //System.out.println("Carte : " + tk.sval);
-          //ligne = tk.nextToken();
-          //System.out.println("Couleur : " + tk.sval);
         }
         ligne = tk.nextToken();
       }

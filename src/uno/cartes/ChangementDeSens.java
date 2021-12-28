@@ -1,10 +1,16 @@
 package uno.cartes;
 
+/**
+ * Carte à poser permettant de changer de sens dans le jeu
+ */
 public class ChangementDeSens extends Carte{
     public ChangementDeSens(Uno u, Couleur c){
         super(u, c);
     }
 
+    /**
+     * @return La valeur de la carte ChangementDeSens
+     */
     @Override
     public int getValeur() {
         return 20;
