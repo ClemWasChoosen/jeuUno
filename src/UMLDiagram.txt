@@ -1,5 +1,6 @@
 @startuml
 abstract class Carte{
+
  Carte(Uno u)
  Carte(Uno u, Couleur, c)
  {abstract} int getValeur()
@@ -15,41 +16,123 @@ abstract class Carte{
  {abstract} boolean peutEtrePoseeSur(PasseTonTour c)
  {abstract} boolean peutEtrePoseeSur(ChangementDeSens c)
  {abstract} String getName()
+ String toString()
 }
 
 class FabriqueCarte{
  private PaquetDeCartes paquet
+
  FabriqueCartes()
  PaquetDeCartes getPaquet()
  PaquetDeCartes getPaquet1Vert()
  PaquetDeCartes getPaquet5Vert()
  PaquetDeCartes getPaquetComplet()
  {static} FabriqueCartes getInstance()
+ String toString()
 }
 
 class PaquetDeCartes implements Iterable{
+ ArrayList<Carte> cartePaquet
+
  PaquetDeCartes(ArrayList<Carte> nbCarte)
+ boolean estVide()
  PaquetDeCartes()
+ void clearPaquet()
  void ajouter(Carte ... cartesToAdd)
  void retourner()
  void melanger()
  void ajouter(PaquetDeCartes cartesToAdd)
  int getNombreDeCartes()
  Carte getSommet()
+ Carte piocher()
+ Carte getCarte(int index)
  void enlever(Carte carteToRemove)
  void ecrire(String nomDeFichier) throws ErreurFichier
  PaquetDeCartes lire(String nomDeFichier) throws ErreurFichier
  Iterator<Carte> iterator()
+ String toString()
 }
 
 class Uno{
+ int sens
+ int joueurActuel
+ int nbJoueur
+ boolean etatJeu
+
  Uno()
+ void initialiser(int nbJoueurL, String nomJoueur) throws ErreurUno
+ void creerLesJoueurs(int nbJoueurL, String nomJoueur)
+ void distribuerCarte() throws ErreurUno
+ void choisirQuiJoue()
+ void setDialogue(DialogueUno diagPara)
+ int getNbCarteEnMainJoueur()
+ boolean estUnJoueurHumain()
+ void jouer(String coupAjouer)
+ String toStringPaquet()
+ PaquetDeCartes getPaquetJoueurActuel()
+ int getSens()
+ void setSens(int sens)
+ int getJoueurActuel()
+ void setJoueurActuel(int joueurActuel)
+ int getNbJoueur()
+ Joueur[] getTabJoueur()
+ PaquetDeCartes getTalon()
+ void setTalon(PaquetDeCartes talon)
+ PaquetDeCartes getPioche()
+ void setPioche(PaquetDeCartes pioche)
+ boolean getEtatJeu()
+ String toString()
 }
 
-class Chiffre{
- int valeur
+class Chiffre extends Carte{
+ int val
+
+ Chiffre(Uno u, Couleur c, int val)
  int getValeur()
  boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String toString()
+ String getName()
+}
+
+class PasseTonTour extends Carte{
+ PasseTonTour(Uno u, Couleur c)
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+ void appliquerEffet()
+}
+
+class ChangementDeSens extends Carte{
+ ChangementDeSens(Uno u, Couleur c)
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
+ boolean peutEtrePoseeSur(Plus2 c)
+ boolean peutEtrePoseeSur(Plus4 c)
+ boolean peutEtrePoseeSur(Joker c)
+ boolean peutEtrePoseeSur(PasseTonTour c)
+ boolean peutEtrePoseeSur(ChangementDeSens c)
+ String getName()
+ void appliquerEffet()
+}
+
+class Joker extends Carte{
+ Joker(Uno u, Couleur c)
+ int getValeur()
+ boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
  boolean peutEtrePoseeSur(Plus2 c)
  boolean peutEtrePoseeSur(Plus4 c)
  boolean peutEtrePoseeSur(Joker c)
@@ -58,64 +141,32 @@ class Chiffre{
  String getName()
 }
 
-class PasseTonTour{
- int valeur
+class Plus2 extends Carte{
+ Plus2(Uno u, Couleur c)
  int getValeur()
  boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
  boolean peutEtrePoseeSur(Plus2 c)
  boolean peutEtrePoseeSur(Plus4 c)
  boolean peutEtrePoseeSur(Joker c)
  boolean peutEtrePoseeSur(PasseTonTour c)
  boolean peutEtrePoseeSur(ChangementDeSens c)
  String getName()
+ void appliquerEffet()
 }
 
-class ChangementDeSens{
- int valeur
+class Plus4 extends Carte{
+ Plus4(Uno u, Couleur c)
  int getValeur()
  boolean peutEtreRecouvertePar(Carte c)
+ boolean peutEtrePoseeSur(Chiffre c)
  boolean peutEtrePoseeSur(Plus2 c)
  boolean peutEtrePoseeSur(Plus4 c)
  boolean peutEtrePoseeSur(Joker c)
  boolean peutEtrePoseeSur(PasseTonTour c)
  boolean peutEtrePoseeSur(ChangementDeSens c)
  String getName()
-}
-
-class Joker{
- int valeur
- int getValeur()
- boolean peutEtreRecouvertePar(Carte c)
- boolean peutEtrePoseeSur(Plus2 c)
- boolean peutEtrePoseeSur(Plus4 c)
- boolean peutEtrePoseeSur(Joker c)
- boolean peutEtrePoseeSur(PasseTonTour c)
- boolean peutEtrePoseeSur(ChangementDeSens c)
- String getName()
-}
-
-class Plus2{
- int valeur
- int getValeur()
- boolean peutEtreRecouvertePar(Carte c)
- boolean peutEtrePoseeSur(Plus2 c)
- boolean peutEtrePoseeSur(Plus4 c)
- boolean peutEtrePoseeSur(Joker c)
- boolean peutEtrePoseeSur(PasseTonTour c)
- boolean peutEtrePoseeSur(ChangementDeSens c)
- String getName()
-}
-
-class Plus4{
- int valeur
- int getValeur()
- boolean peutEtreRecouvertePar(Carte c)
- boolean peutEtrePoseeSur(Plus2 c)
- boolean peutEtrePoseeSur(Plus4 c)
- boolean peutEtrePoseeSur(Joker c)
- boolean peutEtrePoseeSur(PasseTonTour c)
- boolean peutEtrePoseeSur(ChangementDeSens c)
- String getName()
+ void appliquerEffet()
 }
 
 enum Couleur{
@@ -123,15 +174,75 @@ enum Couleur{
  Couleur VERT
  Couleur BLEU
  Couleur JAUNE
+ Couleur(String nom)
+ String getNom()
 }
 
+class DialogueUno{
+ int nbJoueur
+ String nomJoueur
+ Scanner sc
+
+ DialogueUno(Uno unoPara) throws ErreurUno
+ int lireNombreJoueur()
+ String lireString()
+ void afficherPaquetJoueur()
+ Couleur lireCouleur()
+ String lireCoup()
+ void reagir()
+}
+
+class CoupIncorrect extends Exception{
+ CoupIncorrect(String errorMessage)
+}
+
+class ErreurFichier extends Exception{
+ ErreurFichier(String errorMessage)
+}
+
+class ErreurUno extends Exception{
+ ErreurUno(String erreur)
+}
+
+class Jeu{
+ void main (String[] args)
+}
+
+class Bots extends Joueur{
+ Bots(String nom)
+ Carte carteChoisie(String coupAJouer, Carte talon) throws CoupIncorrect
+ boolean joueurEstHumain()
+ void choisirCouleurCarte(Carte carteAChanger, DialogueUno diag) throws CoupIncorrect
+ void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect
+}
+
+class Humain extends Joueur{
+ Humain(String nom)
+ boolean joueurEstHumain()
+ void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect
+ Carte carteChoisie(String coupAJouer, Carte talon) throws CoupIncorrect
+ void choisirCouleurCarte(Carte carteAChanger, DialogueUno diag)
+}
+
+abstract class Joueur {
+ String nom
+ Joueur(String nom)
+ PaquetDeCartes getPaquetJoueur()
+ String getNom()
+ String toString()
+ {abstract} Carte carteChoisie(String coupAJouer, Carte talon) throws CoupIncorrect
+ void jouer(PaquetDeCartes talon, PaquetDeCartes pioche)
+ Couleur getRandColor()
+ {abstract} void jouer(String coupAJouer, PaquetDeCartes talon, PaquetDeCartes pioche, DialogueUno diag) throws CoupIncorrect
+ {abstract} boolean joueurEstHumain()
+ {abstract} void choisirCouleurCarte(Carte carteAChanger, DialogueUno diag) throws CoupIncorrect
+}
+
+DialogueUno "1"--"1" Uno
+Joueur --"1" PaquetDeCartes
 Carte --"1" Uno
-PaquetDeCarte --"*" Carte
 Carte --"1" Couleur
-Carte <-- Chiffre
-Carte <-- PasseTonTour
-Carte <-- Joker
-Carte <-- Plus2
-Carte <-- Plus4
-Carte <-- ChangementDeSens
+PaquetDeCarte --"*" Carte
+Uno --"*" Joueur
+Uno --"2" PaquetDeCartes
 @enduml

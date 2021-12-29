@@ -120,6 +120,11 @@ public class PaquetDeCartes implements Iterable<Carte>{
     return enlever(this.cartePaquet.get(rand));
   }
 
+  /**
+   * Retourne la carte en fonction de l'index
+   * @param index de la carte à retourner
+   * @return carte présente dans le paquet
+   */
   public Carte getCarte(int index){
     return this.cartePaquet.get(index);
   }
