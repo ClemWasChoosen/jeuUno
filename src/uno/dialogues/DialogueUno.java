@@ -9,12 +9,21 @@ import uno.errorHandler.ErreurUno;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Classe DialogueUno est la classe d'interaction entre l'humain et le jeu Uno,
+ * toutes les entrées (System.in) et sorties (System.out) du jeu sont faites ici
+ */
 public class DialogueUno {
     Uno u1;
     int nbJoueur;
     String nomJoueur;
     Scanner sc;
 
+    /**
+     * Constructeur de DialogueUno, demande le nom du joueur et le nombre de joueur à l'humain
+     * @param unoPara Uno, jeu Actuel avec qui interagir
+     * @throws ErreurUno
+     */
     public DialogueUno(Uno unoPara) throws ErreurUno {
         if (unoPara == null){
             throw new ErreurUno("Uno est null, dialogue uno ne peut être initialisé");
@@ -27,6 +36,11 @@ public class DialogueUno {
         u1.initialiser(this.nbJoueur, this.nomJoueur);
     }
 
+    /**
+     * Demande le nombre de joueur dans le jeu de Uno à l'humain (redemande si le nombre est superieur à 10 ou inferieur
+     * à 2)
+     * @return un nombre compris entre 2 et 10
+     */
     public int lireNombreJoueur(){
         sc = new Scanner(System.in);
         int nb = 0;
@@ -41,6 +55,10 @@ public class DialogueUno {
         return nb;
     }
 
+    /**
+     * Récupère un String avec le scanner (System.in)
+     * @return un string demandé à l'humain
+     */
     public String lireString(){
         sc = new Scanner(System.in);
         String ligne = "";
@@ -52,6 +70,9 @@ public class DialogueUno {
         return ligne;
     }
 
+    /**
+     * Affiche à l'écran le paquet du joueur actuel, humain ou bot
+     */
     public void afficherPaquetJoueur(){
         if (this.u1.getNbCarteEnMainJoueur() > 0){
             System.out.println("Paquet de " + this.u1.getTabJoueur()[u1.getJoueurActuel()].getNom() + ":");
@@ -60,6 +81,11 @@ public class DialogueUno {
         }
     }
 
+    /**
+     * Demande à l'utilisateur un nombre entre 1 et 4 -> (1) Jaune | (2) Vert | (3) Bleu | (4) Rouge
+     * Boucle si la valeur entrée est incorrecte
+     * @return la couleur choisie par l'humain
+     */
     public Couleur lireCouleur(){
 
         sc = new Scanner(System.in);
@@ -92,6 +118,16 @@ public class DialogueUno {
         return coul;
     }
 
+    /**
+     * Demande à l'humain si il veut jouer ou piocher
+     * vérifie que la ligne entrée commence bien par 'p' ou 'j'
+     * Commence par:
+     *      -(p) piocher -> renvoie la ligne à la fin (sera vérifiée dans uno)
+     *      -(j) jouer -> demande à l'humain quelle carte il veut jouer
+     *                    retourne un string avec le numéro de la carte à jouer
+     *                    (par ex "1" / "2" / ... / "*nombre de carte dans le paquet*")
+     * @return le coup que veut jouer l'humain
+     */
     public String lireCoup(){
         System.out.println("\n(p) : piocher | (j) jouer une carte");
         System.out.print("Quel coup voulez vous jouer : ");
@@ -118,6 +154,11 @@ public class DialogueUno {
         return coupAJouer;
     }
 
+    /**
+     * Affiche à l'écran quel joueur va jouer, son paquet, la carte sur le talon et le nombre de carte dans la pioche.
+     * si le jeu n'est pas fini puis appelle la fonctions jouer() de Uno.
+     * Si le jeu est terminé, on affiche le gagnant et on termine la fonction sans appeler jouer()
+     */
     public void reagir(){
         if (!this.u1.getEtatJeu()){
         System.out.println("========\nCarte sur le talon :");
